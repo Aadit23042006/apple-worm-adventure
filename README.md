@@ -1,9 +1,8 @@
-
 # 🍎 Apple Worm Adventure
 
-**Apple Worm Adventure (AWA)** is a full-stack, browser-based puzzle game in which players control a worm, collect apples, navigate obstacles, and solve levels using strategic movement.
+**Apple Worm Adventure (AWA)** is a full-stack, browser-based puzzle game where players control a worm, collect apples, navigate obstacles, and solve challenging levels using strategic movement.
 
-The project is built with a React frontend, Django REST API backend, and PostgreSQL database. Docker Compose simplifies local development and deployment.
+The application is built with **React, TypeScript, Django REST Framework, and PostgreSQL**, with Docker-based deployment support and live hosting on Render.
 
 ---
 
@@ -11,9 +10,19 @@ The project is built with a React frontend, Django REST API backend, and Postgre
 
 | Resource | Link |
 |---|---|
-| GitHub Repository | [Apple Worm Adventure](https://github.com/Aadit23042006/apple-worm-adventure) |
-| Project Demonstration Video | [Watch Project Demo](https://drive.google.com/file/d/1HOFCVIMizAZD6oI4qD6mEp9XsG2OZnyd/view?usp=drive_link) |
-| Local Application | [Open Apple Worm Adventure](http://127.0.0.1:5177/) |
+| 🌐 Live Frontend | [Open Apple Worm Adventure](https://awa-frontend-1ikn.onrender.com/) |
+| ⚙️ Backend API | [AWA Backend](https://awa-backend-wfvo.onrender.com/) |
+| ❤️ Backend Health Check | [API Health](https://awa-backend-wfvo.onrender.com/api/health/) |
+| 🔌 Frontend API Proxy | [API Health via Frontend](https://awa-frontend-1ikn.onrender.com/api/health/) |
+| 💻 GitHub Repository | [Apple Worm Adventure](https://github.com/Aadit23042006/apple-worm-adventure) |
+| 🎬 Project Demonstration | [Watch Project Demo](https://drive.google.com/file/d/1HOFCVIMizAZD6oI4qD6mEp9XsG2OZnyd/view?usp=drive_link) |
+
+**Local development URLs**
+
+- Frontend: `http://127.0.0.1:5177/`
+- Backend API: `http://127.0.0.1:8002/api/`
+
+*Note: The live services have been deployed on Render. Individual application features should be considered production-verified only after their respective end-to-end tests pass.*
 
 ---
 
@@ -23,13 +32,15 @@ The project is built with a React frontend, Django REST API backend, and Postgre
 |---|---|
 | Project Name | Apple Worm Adventure |
 | Short Name | AWA |
-| Frontend | React + Vite |
-| Backend | Python + Django REST Framework |
+| Frontend | React, TypeScript, Vite |
+| Backend | Python, Django REST Framework |
 | Database | PostgreSQL |
-| Deployment | Docker / Docker Compose / Render |
 | Web Server | Nginx |
-| Authentication | Django authentication and API authentication |
-| Game Type | Logic-based puzzle game |
+| Application Server | Gunicorn |
+| Authentication | Django Authentication and API Authentication |
+| Containerization | Docker |
+| Deployment | Render |
+| Game Type | Logic-based Puzzle Game |
 
 ---
 
@@ -50,8 +61,9 @@ The project is built with a React frontend, Django REST API backend, and Postgre
 
 - User registration and login.
 - Authentication-protected API endpoints.
-- User game sessions.
-- Player progress tracking.
+- User-specific game sessions.
+- Player profile management.
+- Game progress tracking.
 
 ### 🏆 Progress and Rewards
 
@@ -70,16 +82,18 @@ The project is built with a React frontend, Django REST API backend, and Postgre
 - Reward idempotency protections.
 - Environment-based configuration.
 - Production security settings.
-- Secure cookies and HTTPS support.
+- HTTPS and secure-cookie support.
 
 ### 🐳 Deployment
 
 - Dockerized backend.
 - Dockerized frontend.
-- PostgreSQL service.
+- PostgreSQL database.
 - Nginx frontend and API proxy.
+- Docker Compose configuration.
 - Production Docker Compose configuration.
-- Caddy reverse proxy and automatic HTTPS support.
+- Render Blueprint deployment configuration.
+- Caddy reverse proxy configuration for supported self-hosted deployments.
 
 ---
 
@@ -108,7 +122,8 @@ The project is built with a React frontend, Django REST API backend, and Postgre
 - Docker
 - Docker Compose
 - Caddy
-- Git and GitHub
+- Git
+- GitHub
 - Render
 
 ---
@@ -131,6 +146,7 @@ apple-worm-adventure/
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── nginx.conf
+│   ├── nginx.conf.template
 │   └── Dockerfile
 │
 ├── scripts/
@@ -156,7 +172,7 @@ apple-worm-adventure/
 └── TLS_DEPLOYMENT_GUIDE.md
 ```
 
-*The structure above highlights the main project components. Additional application files, migrations, tests, and configuration files are maintained in their respective directories.*
+*This structure highlights the main project components. Additional application files, migrations, tests, and configuration files are maintained in their respective directories.*
 
 ---
 
@@ -170,7 +186,7 @@ Install the following tools:
 4. Node.js (version required by the frontend package)
 5. Python (version required by backend dependencies)
 
-Verify installation:
+Verify the installations:
 
 ```bash
 git --version
@@ -191,15 +207,13 @@ python --version
 git clone https://github.com/Aadit23042006/apple-worm-adventure.git
 ```
 
-Navigate into the repository:
+### Step 2: Navigate to the project directory
 
 ```bash
 cd apple-worm-adventure
 ```
 
-### Step 2: Configure environment variables
-
-Copy the example environment file.
+### Step 3: Configure environment variables
 
 **Windows PowerShell:**
 
@@ -213,39 +227,39 @@ Copy-Item .env.example .env
 cp .env.example .env
 ```
 
-Review `.env` and configure the local development values.
+Review `.env` and configure the required local development values.
 
-Never upload `.env` to GitHub.
+Never upload `.env` or production credentials to GitHub.
 
-### Step 3: Start Docker Desktop
+### Step 4: Start Docker Desktop
 
-Make sure Docker Desktop is running.
+Ensure Docker Desktop is running.
 
-### Step 4: Build and start the application
+### Step 5: Build and start the application
 
 ```bash
 docker compose up -d --build
 ```
 
-### Step 5: Check running containers
+### Step 6: Check running containers
 
 ```bash
 docker compose ps
 ```
 
-### Step 6: Check backend logs
+### Step 7: Check backend logs
 
 ```bash
 docker compose logs -f backend
 ```
 
-### Step 7: Check frontend logs
+### Step 8: Check frontend logs
 
 ```bash
 docker compose logs -f frontend
 ```
 
-### Step 8: Stop the application
+### Step 9: Stop the application
 
 ```bash
 docker compose down
@@ -255,19 +269,14 @@ docker compose down
 
 ## 🌐 Local Application Access
 
-The frontend is accessible at:
+After successfully starting the local application:
 
-**http://127.0.0.1:5177/**
+| Component | URL |
+|---|---|
+| Frontend | http://127.0.0.1:5177/ |
+| Backend API | http://127.0.0.1:8002/api/ |
 
-The backend API is available through the configured API endpoint:
-
-```text
-http://127.0.0.1:8002/api/
-```
-
-**Note:** These are the documented local development addresses. They work on the computer where the application is running and are not public deployment URLs.
-
-Actual port mappings depend on the Docker Compose configuration.
+These are documented local development addresses. Actual port mappings depend on the Docker Compose configuration.
 
 ---
 
@@ -285,7 +294,7 @@ Set-ExecutionPolicy -Scope Process Bypass -Force
 & ".\scripts\RUN-ALL-TESTS.ps1"
 ```
 
-### Run only final production verification
+### Run final production verification
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass -Force
@@ -293,7 +302,7 @@ Set-ExecutionPolicy -Scope Process Bypass -Force
 & ".\scripts\RUN-FINAL-PRODUCTION-VERIFICATION.ps1"
 ```
 
-### Django checks
+### Django application checks
 
 Run inside the backend environment:
 
@@ -301,69 +310,54 @@ Run inside the backend environment:
 python manage.py check
 ```
 
-Production security check:
+### Django production security checks
 
 ```bash
 python manage.py check --deploy
 ```
 
-A successful automated test run does not by itself establish that external production services, HTTPS, email delivery, or real ad-provider callbacks have been verified.
+Automated tests should be executed in an appropriate test environment. A successful local test run does not independently prove that every external production service or integration is working.
 
 ---
 
 ## 🔒 Environment Variables and Security
 
-The project uses environment variables for sensitive configuration.
+The application uses environment variables for sensitive configuration.
 
 Important configuration includes:
 
 - Django secret key.
-- Database credentials.
+- PostgreSQL database credentials.
 - Allowed hosts.
 - CORS and CSRF trusted origins.
-- Email / SMTP credentials.
-- Rewarded-ad provider configuration.
-- Webhook signing secret.
+- Email and SMTP configuration.
+- Rewarded-ad provider configuration, where applicable.
+- Webhook signing secrets.
 - HTTPS and secure-cookie settings.
 
-Example files:
+Example configuration files:
 
 ```text
 .env.example
 .env.production.example
 ```
 
-Copy the appropriate example file and configure real values locally or in your deployment provider.
+### Security Guidelines
 
-### Security Rules
-
-- Never commit `.env`.
-- Never commit `.env.production`.
+- Never commit `.env` files.
 - Never publish database passwords.
-- Never publish Django secret keys.
-- Never expose webhook signing secrets.
-- Rotate credentials if they are accidentally exposed.
-- Use HTTPS for production.
+- Never expose Django secret keys.
+- Never publish webhook signing secrets.
+- Rotate credentials if accidentally exposed.
+- Use HTTPS in production.
 - Keep reward verification on the backend.
-- Do not store production credentials in source code.
+- Never hardcode production credentials in source code.
 
 ---
 
 ## ☁️ Production Deployment
 
-The project includes a production Docker Compose configuration.
-
-Before deployment:
-
-1. Configure production environment variables.
-2. Set the actual public hostname.
-3. Configure PostgreSQL credentials.
-4. Configure SMTP credentials.
-5. Configure a supported real rewarded-ad provider and signed callback verification if rewarded ads are enabled.
-6. Configure DNS.
-7. Configure HTTPS.
-8. Run production validation.
-9. Deploy and verify the application.
+The repository includes production deployment configurations for Docker Compose and Render.
 
 ### Prepare production environment
 
@@ -377,7 +371,7 @@ Before deployment:
 .\scripts\VALIDATE-PRODUCTION.ps1
 ```
 
-### Start production deployment
+### Start production Docker deployment
 
 ```bash
 docker compose -f docker-compose.production.yml --env-file .env.production up -d --build
@@ -389,38 +383,105 @@ docker compose -f docker-compose.production.yml --env-file .env.production up -d
 docker compose -f docker-compose.production.yml --env-file .env.production ps
 ```
 
-See the following documentation for additional deployment instructions:
+Additional deployment documentation:
 
 - `docs/DEPLOYMENT.md`
 - `TLS_DEPLOYMENT_GUIDE.md`
 
-### Render Deployment
+---
 
-A Render Blueprint is included at `render.yaml`, with detailed instructions in:
+## ☁️ Live Render Deployment
+
+Apple Worm Adventure has separate frontend and backend services deployed on Render.
+
+### Frontend
+
+**Live URL:**
+
+https://awa-frontend-1ikn.onrender.com/
+
+The frontend is served through Nginx and proxies API requests to the backend.
+
+### Backend
+
+**Live URL:**
+
+https://awa-backend-wfvo.onrender.com/
+
+### API Health Check
+
+Direct backend health endpoint:
+
+https://awa-backend-wfvo.onrender.com/api/health/
+
+Frontend-proxied health endpoint:
+
+https://awa-frontend-1ikn.onrender.com/api/health/
+
+### Render Configuration
+
+The repository includes:
+
+```text
+render.yaml
+```
+
+The Blueprint defines the frontend, backend, and PostgreSQL resources.
+
+Deployment documentation:
 
 ```text
 docs/RENDER_DEPLOYMENT.md
 ```
 
-The blueprint does not contain production secrets and does not constitute proof of a completed live deployment.
+### Production Deployment Verification
 
-Configure the required environment variables in Render and run the documented smoke tests after deployment.
+After deployment, verify:
+
+- Backend service status.
+- Frontend service status.
+- Docker build logs.
+- Nginx startup.
+- Environment variable configuration.
+- PostgreSQL connectivity.
+- Database migration output.
+- API health endpoint.
+- Frontend-to-backend API proxy.
+- Registration and login.
+- Gameplay and progress persistence.
+
+A live homepage or health endpoint alone does not establish that all application features have passed production testing.
 
 ---
 
-## 📊 Production Verification
+## 📊 Production Readiness Checklist
 
-The final production verification covers:
-
-| Verification | Requirement |
+| Area | Verification |
 |---|---|
-| Django production security | Django deployment security checks pass |
-| Public domain | Public hostname resolves correctly |
-| HTTPS certificate | Valid certificate is served |
-| Secure browser cookies | Secure cookie flags are verified over HTTPS |
-| Production deployment | Services start and application responds successfully |
+| Frontend Deployment | Live frontend availability |
+| Backend Deployment | Live backend availability |
+| API Health | Health endpoint response |
+| Database | PostgreSQL connectivity |
+| Database Migrations | Successful migration execution |
+| Authentication | Registration and login tests |
+| Gameplay | Level and game logic tests |
+| Progress | Database persistence tests |
+| Security | Django production security checks |
+| Ad Integration | Actual provider verification, if configured |
 
-These checks require a real deployment environment and cannot all be completed through local source-code tests.
+Individual items should be marked complete only after their corresponding tests pass.
+
+---
+
+## 📢 Advertising Integration
+
+The project contains an ad and reward-related architecture.
+
+Real ad-provider integration requires a supported provider, an appropriately configured account, provider credentials, and any required approval.
+
+Reward verification should be handled securely by the backend.
+
+**Note:** The presence of ad-related application code does not by itself establish that real ad delivery or monetization is active.
 
 ---
 
@@ -451,7 +512,7 @@ git push origin feature/your-feature
 
 ## 📄 License
 
-Add the project's applicable license here before distributing the source code.
+Add the project's applicable open-source license before distributing the source code.
 
 ---
 
@@ -461,12 +522,24 @@ Add the project's applicable license here before distributing the source code.
 
 **Short Name:** AWA
 
-**GitHub Repository:**  
+**GitHub Repository:**
+
 https://github.com/Aadit23042006/apple-worm-adventure
 
-**Project Demonstration:**  
+**Live Application:**
+
+https://awa-frontend-1ikn.onrender.com/
+
+**Backend API:**
+
+https://awa-backend-wfvo.onrender.com/
+
+**Project Demonstration:**
+
 [Watch the Full Project Video](https://drive.google.com/file/d/1HOFCVIMizAZD6oI4qD6mEp9XsG2OZnyd/view?usp=drive_link)
 
 ---
 
-*Built with Python, Django, React, PostgreSQL, and Docker.*
+*Built with Python, Django REST Framework, React, PostgreSQL, Docker, and Render.*
+
+**Apple Worm Adventure — Think Strategically. Move Smartly. Complete Every Level! 🍎**

@@ -1,0 +1,165 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261111235023
+Username: AADIT\Aadit
+RunAs User: AADIT\Aadit
+Configuration Name: 
+Machine: AADIT (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 11176
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\AWA_FINAL_100_PERCENT_VERIFICATION.txt
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> function Test-Step {
+    param(
+        [string]$Name,
+        [scriptblock]$Action
+    )
+
+    Write-Host "`n========== $Name ==========" -ForegroundColor Cyan
+
+    try {
+        $global:LASTEXITCODE = 0
+        & $Action
+
+        $Code = $global:LASTEXITCODE
+
+        if ($Code -eq 0) {
+            Write-Host "PASS" -ForegroundColor Green
+            $script:Results += "$Name : PASS"
+        }
+        else {
+            Write-Host "FAIL (Exit Code: $Code)" -ForegroundColor Red
+            $script:Results += "$Name : FAIL"
+        }
+    }
+    catch {
+        Write-Host "ERROR: $_" -ForegroundColor Red
+        $script:Results += "$Name : ERROR"
+    }
+}
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> # 1. Docker container verification
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Test-Step "DOCKER CONTAINERS" {
+    docker ps --format "table {{.Names}}\t{{.Status}}"
+    if ($LASTEXITCODE -ne 0) { throw "Docker unavailable" }
+}
+
+========== DOCKER CONTAINERS ==========
+
+PASS
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> # 2. Backend automated tests
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Test-Step "BACKEND TEST SUITE" {
+    docker exec awa-backend python manage.py test
+}
+
+========== BACKEND TEST SUITE ==========
+
+PASS
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> # 3. Django system checks
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Test-Step "DJANGO SYSTEM CHECKS" {
+    docker exec awa-backend python manage.py check
+}
+
+========== DJANGO SYSTEM CHECKS ==========
+
+PASS
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> # 4. Production configuration validation
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Test-Step "PRODUCTION VALIDATION" {
+    docker exec awa-backend python manage.py validate_production
+}
+
+========== PRODUCTION VALIDATION ==========
+
+FAIL (Exit Code: 1)
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> # 5. Frontend dependency verification and build
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Test-Step "FRONTEND PRODUCTION BUILD" {
+    Push-Location ".\frontend"
+
+    try {
+        if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
+            throw "Node.js/npm is not installed on Windows."
+        }
+
+        if (Test-Path ".\package-lock.json") {
+            npm ci
+        }
+        else {
+            npm install
+        }
+
+        if ($LASTEXITCODE -ne 0) {
+            throw "Frontend dependency installation failed."
+        }
+
+        npm run build
+
+        if ($LASTEXITCODE -ne 0) {
+            throw "Frontend production build failed."
+        }
+    }
+    finally {
+        Pop-Location
+    }
+}
+
+========== FRONTEND PRODUCTION BUILD ==========
+
+
+PASS
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> # 6. Final summary
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Write-Host "`n========== FINAL VERIFICATION SUMMARY ==========" -ForegroundColor Cyan
+
+========== FINAL VERIFICATION SUMMARY ==========
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> $Results | ForEach-Object {
+    Write-Host $_
+}
+DOCKER CONTAINERS : PASS
+BACKEND TEST SUITE : PASS
+DJANGO SYSTEM CHECKS : PASS
+PRODUCTION VALIDATION : FAIL
+FRONTEND PRODUCTION BUILD : PASS
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> $Passed = @($Results | Where-Object { $_ -match ': PASS$' }).Count
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> $Failed = $Results.Count - $Passed
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Write-Host "`nPASSED: $Passed"
+
+PASSED: 4
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Write-Host "FAILED: $Failed"
+FAILED: 1
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> if ($Failed -eq 0) {
+    Write-Host "`nALL AUTOMATED CHECKS PASSED" -ForegroundColor Green
+}
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> else {
+    Write-Host "`nVERIFICATION INCOMPLETE - SEE FAILURES ABOVE" -ForegroundColor Yellow
+}
+else : The term 'else' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ else {
++ ~~~~
+    + CategoryInfo          : ObjectNotFound: (else:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+else : The term 'else' is not recognized as the name of a cmdlet, function,
+script file, or operable program. Check the spelling of the name, or if a path
+was included, verify that the path is correct and try again.
+At line:1 char:1
++ else {
++ ~~~~
+    + CategoryInfo          : ObjectNotFound: (else:String) [], CommandNotFoundEx
+   ception
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Write-Host "`nReport: $Report"
+
+Report: .\AWA_FINAL_100_PERCENT_VERIFICATION.txt
+PS D:\FINAL\AWA_REPAIRED_RELEASE_CANDIDATE_NOT_CERTIFIED> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261111235143
+**********************

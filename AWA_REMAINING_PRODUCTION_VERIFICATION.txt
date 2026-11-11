@@ -1,0 +1,48 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261111235340
+Username: AADIT\Aadit
+RunAs User: AADIT\Aadit
+Configuration Name: 
+Machine: AADIT (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 11176
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\AWA_REMAINING_PRODUCTION_VERIFICATION.txt
+
+========== AWA FINAL PRODUCTION VERIFICATION ==========
+
+[1] CHECKING EFFECTIVE DJANGO PRODUCTION SETTINGS
+
+
+[2] CHECKING PRODUCTION VALIDATION
+
+
+PRODUCTION VALIDATION: FAIL
+Remaining blockers must be resolved using genuine production configuration.
+
+[3] CHECKING BACKEND HEALTH
+
+
+[4] CHECKING DATABASE HEALTH
+
+
+[5] CHECKING FRONTEND BUILD OUTPUT
+Frontend production build: PASS
+
+========== FINAL RESULT ==========
+PRODUCTION CONFIGURATION: NOT CERTIFIED
+
+Report saved at: .\AWA_REMAINING_PRODUCTION_VERIFICATION.txt
+**********************
+Windows PowerShell transcript end
+End time: 20261111235343
+**********************
