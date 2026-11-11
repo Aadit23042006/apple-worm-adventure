@@ -437,12 +437,13 @@ def health(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def register(request):
-    serializer = RegistrationSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-
-    stage = "registration initialization"
+    stage = "serializer validation"
 
     try:
+        serializer = RegistrationSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        stage = "registration initialization"
         with transaction.atomic():
             stage = "user and profile creation"
             user = serializer.save()
