@@ -429,6 +429,7 @@ def health(request):
 
 
 
+
 # ============================================================
 # REGISTER
 # ============================================================
@@ -520,7 +521,7 @@ def register(request):
             status=201,
         )
 
-        except Exception as exc:
+    except Exception as exc:
         logger.exception(
             "AWA REGISTRATION FAILURE at stage: %s | Error: %s",
             stage,
@@ -528,6 +529,7 @@ def register(request):
         )
         traceback.print_exc()
         raise
+
 
 
     # --------------------------------------------------------
