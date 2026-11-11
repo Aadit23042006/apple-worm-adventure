@@ -78,45 +78,17 @@ services:
         value: "31536000"
 
       # Reward / advertisement configuration
-      - key: AD_PROVIDER
-        sync: false
-
-      - key: AD_PROVIDER_ADAPTER
-        sync: false
-
-      - key: AD_PROVIDER_WEBHOOK_SECRET
-        sync: false
-
+      # Real ad provider is not configured.
       - key: ALLOW_PROVIDER_FREE_DEMO_ADS
         value: "false"
 
       # Email configuration
+      # Console backend does not require SMTP credentials.
       - key: EMAIL_BACKEND
-        value: "django.core.mail.backends.smtp.EmailBackend"
-
-      - key: EMAIL_HOST
-        sync: false
-
-      - key: EMAIL_PORT
-        value: "587"
-
-      - key: EMAIL_HOST_USER
-        sync: false
-
-      - key: EMAIL_HOST_PASSWORD
-        sync: false
-
-      - key: EMAIL_USE_TLS
-        value: "true"
-
-      - key: EMAIL_USE_SSL
-        value: "false"
+        value: "django.core.mail.backends.console.EmailBackend"
 
       - key: EMAIL_VERIFICATION_REQUIRED
-        value: "true"
-
-      - key: DEFAULT_FROM_EMAIL
-        sync: false
+        value: "false"
 
   # ==========================================
   # FRONTEND - REACT / VITE
