@@ -13,7 +13,6 @@ services:
     autoDeploy: true
 
     envVars:
-      # Django configuration
       - key: DJANGO_DEBUG
         value: "false"
 
@@ -26,7 +25,7 @@ services:
       - key: DJANGO_SECRET_KEY
         generateValue: true
 
-      # PostgreSQL connection
+      # PostgreSQL - preserve existing database
       - key: POSTGRES_DB
         fromDatabase:
           name: awa-postgres
@@ -78,12 +77,11 @@ services:
       - key: SECURE_HSTS_SECONDS
         value: "31536000"
 
-      # Reward / advertisement configuration
+      # Advertisement configuration
       - key: ALLOW_PROVIDER_FREE_DEMO_ADS
         value: "false"
 
       # Email configuration
-      # Console backend: emails are logged, not delivered.
       - key: EMAIL_BACKEND
         value: "django.core.mail.backends.console.EmailBackend"
 
@@ -107,11 +105,15 @@ services:
         value: "APPLE WORM ADVENTURE"
 
       - key: VITE_API_BASE_URL
+        value: "/api"
+
+      # Required by frontend Dockerfile
+      - key: BACKEND_URL
         sync: false
 
-  # ==========================================
-  # POSTGRESQL DATABASE
-  # ==========================================
+# ==========================================
+# EXISTING POSTGRESQL DATABASE
+# ==========================================
 databases:
   - name: awa-postgres
     plan: free
