@@ -1,7 +1,7 @@
 
 services:
   # ==========================================
-  # BACKEND - DJANGO REST API
+  # BACKEND - DJANGO
   # ==========================================
   - type: web
     name: awa-backend
@@ -13,6 +13,7 @@ services:
     autoDeploy: true
 
     envVars:
+      # Django configuration
       - key: DJANGO_DEBUG
         value: "false"
 
@@ -25,7 +26,7 @@ services:
       - key: DJANGO_SECRET_KEY
         generateValue: true
 
-      # PostgreSQL connection
+      # Existing PostgreSQL database connection
       - key: POSTGRES_DB
         fromDatabase:
           name: awa-postgres
@@ -51,7 +52,7 @@ services:
           name: awa-postgres
           property: port
 
-      # Frontend integration
+      # Frontend and security configuration
       - key: FRONTEND_BASE_URL
         sync: false
 
@@ -61,7 +62,6 @@ services:
       - key: CSRF_TRUSTED_ORIGINS
         sync: false
 
-      # Production security
       - key: SECURE_SSL_REDIRECT
         value: "true"
 
@@ -77,13 +77,12 @@ services:
       - key: SECURE_HSTS_SECONDS
         value: "31536000"
 
-      # Reward / advertisement configuration
-      # Real ad provider is not configured.
+      # Advertisement configuration
       - key: ALLOW_PROVIDER_FREE_DEMO_ADS
         value: "false"
 
       # Email configuration
-      # Console backend does not require SMTP credentials.
+      # Console backend logs emails; it does not deliver them.
       - key: EMAIL_BACKEND
         value: "django.core.mail.backends.console.EmailBackend"
 
@@ -91,7 +90,7 @@ services:
         value: "false"
 
   # ==========================================
-  # FRONTEND - REACT / VITE
+  # FRONTEND - REACT / VITE / NGINX
   # ==========================================
   - type: web
     name: awa-frontend
@@ -107,10 +106,15 @@ services:
         value: "APPLE WORM ADVENTURE"
 
       - key: VITE_API_BASE_URL
+        value: "/api"
+
+      # Required by frontend Dockerfile
+      - key: BACKEND_URL
         sync: false
 
 # ==========================================
-# POSTGRESQL DATABASE
+# EXISTING POSTGRESQL DATABASE
+# DO NOT DELETE OR RECREATE
 # ==========================================
 databases:
   - name: awa-postgres

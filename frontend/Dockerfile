@@ -1,6 +1,6 @@
 ﻿FROM node:22-alpine AS build
 
-ARG VITE_GAME_NAME=APPLE WORM ADVENTURE
+ARG VITE_GAME_NAME="APPLE WORM ADVENTURE"
 ARG VITE_API_BASE_URL=/api
 
 ENV VITE_GAME_NAME=${VITE_GAME_NAME}
@@ -18,12 +18,15 @@ COPY . .
 
 RUN npm run build
 
-
 FROM nginx:1.27-alpine
 
+RUN apk add --no-cache gettext
+
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf.template /etc/nginx/nginx.conf.template
 
-EXPOSE 5173
+ENV PORT=10000
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 10000
+
+CMD ["/bin/sh", "-c", ": \"${BACKEND_URL:?Set BACKEND_URL to the awa-backend Render URL}\"; : \"${PORT:=10000}\"; export PORT; envsubst '${PORT} ${BACKEND_URL}' < /etc/nginx/nginx.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
