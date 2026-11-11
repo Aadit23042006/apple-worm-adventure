@@ -13,6 +13,7 @@ services:
     autoDeploy: true
 
     envVars:
+      # Django configuration
       - key: DJANGO_DEBUG
         value: "false"
 
@@ -78,12 +79,11 @@ services:
         value: "31536000"
 
       # Reward / advertisement configuration
-      # Real ad provider is not configured.
       - key: ALLOW_PROVIDER_FREE_DEMO_ADS
         value: "false"
 
       # Email configuration
-      # Console backend does not require SMTP credentials.
+      # Console backend: emails are logged, not delivered.
       - key: EMAIL_BACKEND
         value: "django.core.mail.backends.console.EmailBackend"
 
@@ -109,9 +109,9 @@ services:
       - key: VITE_API_BASE_URL
         sync: false
 
-# ==========================================
-# POSTGRESQL DATABASE
-# ==========================================
+  # ==========================================
+  # POSTGRESQL DATABASE
+  # ==========================================
 databases:
   - name: awa-postgres
     plan: free
