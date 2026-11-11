@@ -520,11 +520,13 @@ def register(request):
             status=201,
         )
 
-    except Exception:
+        except Exception as exc:
         logger.exception(
-            "AWA REGISTRATION FAILURE at stage: %s",
+            "AWA REGISTRATION FAILURE at stage: %s | Error: %s",
             stage,
+            str(exc),
         )
+        traceback.print_exc()
         raise
 
 
