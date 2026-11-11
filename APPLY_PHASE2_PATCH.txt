@@ -1,0 +1,25 @@
+APPLE WORM ADVENTURE — PHASE 2 PATCH
+
+1. Make a separate backup/copy of your current AWA project first. Do not delete or reset your PostgreSQL volume.
+2. Extract this ZIP into a temporary folder.
+3. Copy the extracted files/folders into the project root, preserving the relative folder structure and allowing overwrite of matching source files.
+4. Review backend/.env configuration:
+   - Keep AD_PROVIDER=mock for local development if no real vendor is configured. It is intentionally unavailable and does not fake completion.
+   - For a real vendor, set AD_PROVIDER to the vendor name, AD_PROVIDER_ADAPTER to its dotted adapter path, and AD_PROVIDER_WEBHOOK_SECRET to a strong secret shared securely with the provider server.
+   - Never expose AD_PROVIDER_WEBHOOK_SECRET to frontend code.
+5. From the project root, run:
+   docker compose exec backend python manage.py migrate
+   docker compose exec backend python manage.py check
+   docker compose exec backend python manage.py test core.tests_phase2_ads core.tests_phase5_6
+   docker compose exec backend python manage.py test
+6. From frontend, run:
+   npm ci
+   npm run build
+7. Confirm local mock behavior: ad opportunity remains OFFERED, request returns AD_UNAVAILABLE, and no RewardTransaction is created.
+8. Confirm the configured real provider flow in a staging environment: signed COMPLETED webhook moves AD_STARTED to VERIFIED; claim moves VERIFIED to GRANTED; replay does not create a second ledger entry.
+
+SAFETY:
+- Do not run docker compose down -v.
+- Do not remove/recreate PostgreSQL volumes or restore a database backup as part of this patch.
+- The migration only alters AdOpportunity.status choices; it does not delete or rewrite existing records.
+- Keep the original project copy and database backup assets unchanged until tests pass.

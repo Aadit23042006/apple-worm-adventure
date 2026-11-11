@@ -1,0 +1,8 @@
+﻿AWA Phase 1 local verification
+2026-11-08T22:40:02.0295754+05:30
+Production database/volumes are not referenced by this test stack.
+
+PASS | Frontend npm ci | Clean install from package-lock.json
+PASS | Frontend production build | dist/index.html exists
+PASS | Docker Compose config | Isolated test stack config valid
+PASS | Fresh Django/PostgreSQL tests | Django check, migrations and test suite exited 0 against isolated PostgreSQL 16

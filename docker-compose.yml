@@ -1,0 +1,154 @@
+# ============================================================
+# APPLE WORM ADVENTURE
+# Local Docker Development / Release Candidate
+# ============================================================
+
+services:
+
+  # ----------------------------------------------------------
+  # POSTGRESQL DATABASE
+  # ----------------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: awa-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-veloop}
+      POSTGRES_USER: ${POSTGRES_USER:-veloop_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in .env}
+
+    volumes:
+      - veloop_postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - awa_network
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 10s
+
+
+  # ----------------------------------------------------------
+  # DJANGO BACKEND
+  # ----------------------------------------------------------
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    container_name: awa-backend
+    restart: unless-stopped
+    init: true
+
+    env_file:
+      - .env
+
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+
+      POSTGRES_DB: ${POSTGRES_DB:-veloop}
+      POSTGRES_USER: ${POSTGRES_USER:-veloop_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in .env}
+
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-false}
+
+      SECURE_SSL_REDIRECT: ${SECURE_SSL_REDIRECT:-False}
+      SECURE_HSTS_SECONDS: ${SECURE_HSTS_SECONDS:-0}
+      SECURE_HSTS_INCLUDE_SUBDOMAINS: ${SECURE_HSTS_INCLUDE_SUBDOMAINS:-False}
+      SECURE_HSTS_PRELOAD: ${SECURE_HSTS_PRELOAD:-False}
+
+      SECURE_PROXY_SSL_HEADER_ENABLED: ${SECURE_PROXY_SSL_HEADER_ENABLED:-False}
+
+    ports:
+      - "8005:8000"
+
+    networks:
+      - awa_network
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    command:
+      - sh
+      - -c
+      - |
+        python manage.py migrate --noinput &&
+        exec gunicorn config.wsgi:application \
+          --bind 0.0.0.0:8000 \
+          --workers 3 \
+          --timeout 120 \
+          --graceful-timeout 30 \
+          --access-logfile - \
+          --error-logfile -
+
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health/', timeout=5)"
+
+      interval: 10s
+      timeout: 8s
+      retries: 12
+      start_period: 40s
+
+
+  # ----------------------------------------------------------
+  # REACT + VITE FRONTEND
+  # ----------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+      args:
+        VITE_GAME_NAME: ${VITE_GAME_NAME:-APPLE WORM ADVENTURE}
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api}
+
+    container_name: awa-frontend
+    restart: unless-stopped
+    init: true
+
+    environment:
+      GAME_NAME: ${GAME_NAME:-APPLE WORM ADVENTURE}
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api}
+
+    ports:
+      - "5177:5173"
+
+    networks:
+      - awa_network
+
+    depends_on:
+      backend:
+        condition: service_healthy
+
+
+# ============================================================
+# PERSISTENT DATABASE STORAGE
+# DO NOT CHANGE THE EXISTING VOLUME NAME
+# ============================================================
+
+volumes:
+  veloop_postgres_data:
+    name: awa_release_candidate_postgres_data_v1
+
+
+# ============================================================
+# DOCKER NETWORK
+# ============================================================
+
+networks:
+  awa_network:
+    name: awa_release_candidate_network
+    driver: bridge

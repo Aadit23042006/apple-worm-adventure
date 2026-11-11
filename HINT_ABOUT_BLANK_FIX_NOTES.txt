@@ -1,0 +1,23 @@
+APPLE WORM ADVENTURE - HINT ABOUT:BLANK FIX
+
+Root cause:
+frontend/src/App.tsx opened window.open('about:blank', '_blank') before requesting
+the ad opportunity. If the backend/mock provider returned no launch URL or an error,
+the empty popup was closed, producing the reported behaviour.
+
+Fix:
+- Removed the unconditional about:blank popup.
+- Removed cleanup references to the placeholder popup.
+- Opens a new tab only when backend returns a non-empty URL with http: or https: protocol.
+- Keeps the existing backend ad verification and reward-claim flow; no fake reward is granted.
+
+Validation:
+- ZIP archive integrity check passed.
+- Static source check: no about:blank string and no providerWindow references remain.
+- Full frontend build and live browser test have not been run in this environment.
+
+Important:
+With AD_PROVIDER=mock and no provider adapter configured, the backend may still report
+AD_UNAVAILABLE. This patch prevents the unwanted blank tab; it does not fake ad playback
+or bypass signed provider verification. Hint functionality is fully PASS only after a
+valid provider flow results in an actual in-game hint.

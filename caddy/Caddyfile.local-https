@@ -1,0 +1,18 @@
+﻿{
+    admin off
+}
+
+https://localhost:8443 {
+    tls internal
+
+    encode zstd gzip
+
+    header {
+        Strict-Transport-Security "max-age=300"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+
+    reverse_proxy awa_release_candidate-frontend-1:5173
+}

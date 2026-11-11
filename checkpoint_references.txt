@@ -1,0 +1,227 @@
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\models.py:27: initial_state=models.JSONField(default=dict); checkpoint_state=models.JSONField(default=dict); checkpoint_history=models.JSONField(default=list); score=models.PositiveIntegerField(default=0); moves=models.PositiveIntegerField(default=0); status=models.CharField(max_length=16,choices=STATUS,default='ACTIVE'); revives_used=models.PositiveSmallIntegerField(default=0)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:189: progressed = dict(first_session.checkpoint_state)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:192: first_session.checkpoint_state = progressed
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:193: first_session.save(update_fields=["checkpoint_state"])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:210: def test_tampered_checkpoint_movement_is_rejected(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:239: f"/api/games/{session_id}/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:250: def test_undo_restores_server_checkpoint(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:278: f"/api/games/{session_id}/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:310: Completion must finalize the already-validated portal checkpoint.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:380: checkpoint_state={
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:416: def test_completion_finalizes_existing_portal_checkpoint(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:417: state = self.session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:449: self.session.checkpoint_state["completed"]
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:452: self.session.checkpoint_state["score"],
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:456: def test_completion_rejects_tampered_checkpoint_state(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:457: state = dict(self.session.checkpoint_state)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:491: state = dict(self.session.checkpoint_state)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:493: self.session.checkpoint_state = state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:494: self.session.save(update_fields=["checkpoint_state"])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:508: state = dict(self.session.checkpoint_state)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:515: self.session.checkpoint_state = state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests.py:516: self.session.save(update_fields=["checkpoint_state"])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:301: checkpoint_state={"revives": 0},
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:331: checkpoint_state={"revives": 0},
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:337: checkpoint_state={"revives": 0},
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:372: checkpoint_state={"revives": 0},
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:410: checkpoint_state={"revives": 0},
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:498: session.checkpoint_history = [safe_state]
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:499: session.checkpoint_state = failed_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:502: "checkpoint_history",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:503: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:528: self.assertTrue(session.checkpoint_state["failed"])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:530: session.checkpoint_state["failedMove"],
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:533: self.assertEqual(session.checkpoint_history, [safe_state])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:536: def test_no_revive_level_rejects_checkpoint_after_collision(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:542: f"/api/games/{session.id}/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:554: self.assertTrue(session.checkpoint_state["failed"])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:555: self.assertEqual(session.checkpoint_history, [safe_state])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:613: self.assertTrue(session.checkpoint_state["failed"])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\tests_phase5_6.py:633: self.assertTrue(session.checkpoint_state["failed"])
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step3.py:14: class AppleScoreCheckpointAntiCheatTests(TestCase):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step3.py:46: def test_checkpoint_rejects_fake_apple_and_score_claims(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step3.py:47: original_state = deepcopy(self.session.checkpoint_state)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step3.py:70: f"/api/games/{self.session.id}/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step3.py:84: self.session.checkpoint_state,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step3.py:86: f"{label} changed the stored checkpoint",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step4.py:50: self.initial_checkpoint = deepcopy(
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step4.py:51: self.session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step4.py:68: self.session.checkpoint_state,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step4.py:69: self.initial_checkpoint,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step4.py:84: forged = deepcopy(self.initial_checkpoint)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step4.py:107: def test_completion_rejects_incomplete_server_checkpoint(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:59: def assert_checkpoint_unchanged(self, original):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:63: self.session.checkpoint_state,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:74: f"/api/games/{self.session.id}/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:90: self.session.checkpoint_state["worm"],
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:94: def test_checkpoint_rejects_forged_move_count(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:95: original = deepcopy(self.session.checkpoint_state)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:101: f"/api/games/{self.session.id}/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:112: self.assert_checkpoint_unchanged(original)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:114: def test_checkpoint_rejects_forged_score(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:115: original = deepcopy(self.session.checkpoint_state)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:121: f"/api/games/{self.session.id}/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step5.py:132: self.assert_checkpoint_unchanged(original)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step6.py:12: def test_other_user_cannot_checkpoint_undo_or_complete_session(self):
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step6.py:47: original_checkpoint = session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step6.py:56: f"/api/games/{session_id}/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step6.py:89: session.checkpoint_state,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\test_anticheat_step6.py:90: original_checkpoint,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\urls.py:40: checkpoint,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\urls.py:222: # Save/checkpoint game state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\urls.py:224: "games/<uuid:session_id>/checkpoint/",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\urls.py:225: checkpoint,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\urls.py:226: name="games-checkpoint",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:1987: isinstance(session.checkpoint_state, dict)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:1988: and session.checkpoint_state.get("failed")
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2011: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2172: checkpoint_state=checked,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2481: "Stored checkpoint is invalid.",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2488: # A failed checkpoint is terminal until a verified
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2520: "Invalid checkpoint state.",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2809: # CHECKPOINT
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2814: def checkpoint(
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2850: session.checkpoint_state,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2865: session.checkpoint_history
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2870: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2873: session.checkpoint_history = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2885: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2900: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2901: "checkpoint_history",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2950: session.checkpoint_history
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2989: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:2994: # restoring an earlier checkpoint.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3023: session.checkpoint_history = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3027: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3049: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3050: "checkpoint_history",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3095: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3358: # SERVER-AUTHORITATIVE CHECKPOINT VALIDATION
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3360: # The database checkpoint is always the source of truth.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3362: # match the authoritative checkpoint. The client can never
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3363: # replace or modify the server checkpoint.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3365: session.checkpoint_state or {}
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3390: "No checkpoint state is available "
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3430: "the stored checkpoint."
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3436: # The server continues using ONLY the stored checkpoint.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3442: # The checkpoint is the only trusted game state.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3512: checkpoint_score = int(
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3519: checkpoint_score
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3531: # solely from the authoritative checkpoint state. This prevents a
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3543: session.checkpoint_state = state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3551: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3797: isinstance(revive_session.checkpoint_state, dict)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:3798: and revive_session.checkpoint_state.get("failed")
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4325: and isinstance(session.checkpoint_state, dict)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4326: and session.checkpoint_state.get("failed")
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4487: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4495: session.checkpoint_state = state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4500: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4534: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4540: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4546: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4581: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4587: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4593: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4640: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4648: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views.py:4654: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:1938: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2098: checkpoint_state=checked,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2398: "Stored checkpoint is invalid.",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2433: "Invalid checkpoint state.",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2638: # CHECKPOINT
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2643: def checkpoint(
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2679: session.checkpoint_state,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2694: session.checkpoint_history
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2699: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2702: session.checkpoint_history = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2714: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2722: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2723: "checkpoint_history",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2771: session.checkpoint_history
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2810: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2828: session.checkpoint_history = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2832: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2854: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2855: "checkpoint_history",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:2900: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3163: # SERVER-AUTHORITATIVE CHECKPOINT VALIDATION
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3165: # The database checkpoint is always the source of truth.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3167: # match the authoritative checkpoint. The client can never
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3168: # replace or modify the server checkpoint.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3170: session.checkpoint_state or {}
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3177: "No checkpoint state is available "
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3217: "the stored checkpoint."
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3223: # The server continues using ONLY the stored checkpoint.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3229: # The checkpoint is the only trusted game state.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3299: checkpoint_score = int(
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3306: checkpoint_score
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3318: # solely from the authoritative checkpoint state. This prevents a
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3330: session.checkpoint_state = state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:3338: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4240: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4247: session.checkpoint_state = state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4252: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4286: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4292: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4298: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4333: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4339: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4345: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4392: session.checkpoint_state
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4400: session.checkpoint_state = (
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\views_fixed.py:4406: "checkpoint_state",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\migrations\0002_game_economy.py:34: migrations.CreateModel(name='GameSession',fields=[('id',models.UUIDField(default=uuid.uuid4,editable=False,primary_key=True,serialize=False)),('initial_state',models.JSONField(default=dict)),('checkpoint_state',models.JSONField(default=dict)),('score',models.PositiveIntegerField(default=0)),('moves',models.PositiveIntegerField(default=0)),('status',models.CharField(choices=[('ACTIVE','Active'),('COMPLETED','Completed'),('FAILED','Failed'),('ABANDONED','Abandoned')],default='ACTIVE',max_length=16)),('revives_used',models.PositiveSmallIntegerField(default=0)),('started_at',models.DateTimeField(auto_now_add=True)),('updated_at',models.DateTimeField(auto_now=True)),('completed_at',models.DateTimeField(blank=True,null=True)),('user',models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,related_name='game_sessions',to=settings.AUTH_USER_MODEL)),('level',models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,to='core.level'))]),
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\migrations\0005_gamesession_checkpoint_history.py:10: name='checkpoint_history',
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\backend\core\migrations\0006_reward_claim_cooldown.py:6: ('core', '0005_gamesession_checkpoint_history'),
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:508: // Serialize checkpoint writes so rapid keyboard/touch input cannot arrive out of order.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:509: const checkpointChain = useRef<Promise<unknown>>(Promise.resolve())
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:512: // the current checkpoint. This prevents stale requests from mutating a newer game.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:513: const checkpointEpoch = useRef(0)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:934: const startEpoch = checkpointEpoch.current + 1
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:935: checkpointEpoch.current = startEpoch
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:936: checkpointChain.current = Promise.resolve()
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:970: // Never silently render the previous checkpoint as a successful restart.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:986: if (checkpointEpoch.current !== startEpoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1024: const saveCheckpoint =
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1026: checkpointSession: string,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1027: checkpointToken: string,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1031: checkpointChain.current =
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1032: checkpointChain.current
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1035: if (checkpointEpoch.current !== epoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1040: `/games/${checkpointSession}/checkpoint/`,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1047: checkpointToken,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1051: await checkpointChain.current
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1057: epoch = checkpointEpoch.current,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1067: // Completion is based only on the server's stored checkpoint.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1068: // The final move is checkpointed first; the backend then adds
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1070: if (checkpointEpoch.current !== epoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1083: if (checkpointEpoch.current !== epoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1114: if (checkpointEpoch.current === epoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1145: const moveEpoch = checkpointEpoch.current
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1192: await saveCheckpoint(
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1200: checkpointEpoch.current !==
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1207: checkpointEpoch.current ===
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1212: ? "Checkpoint save failed: " +
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1214: : "Checkpoint save failed.",
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1305: // Save the legal final move as a normal checkpoint first.
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1307: await saveCheckpoint(
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1314: if (checkpointEpoch.current !== moveEpoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1323: if (checkpointEpoch.current === moveEpoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1327: if (checkpointEpoch.current === moveEpoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1331: ? `Checkpoint save failed: ${e.message}`
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1332: : 'Checkpoint save failed.',
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1353: const checkpointSession = session
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1354: const checkpointToken = token
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1357: await saveCheckpoint(
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1358: checkpointSession,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1359: checkpointToken,
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1364: if (checkpointEpoch.current !== moveEpoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1368: if (checkpointEpoch.current === moveEpoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1371: ? `Checkpoint save failed: ${e.message}`
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1372: : 'Checkpoint save failed.',
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1435: const undoEpoch = checkpointEpoch.current
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1440: await checkpointChain.current.catch(() => undefined)
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1442: if (checkpointEpoch.current !== undoEpoch) {
+D:\ON GOING WORKING PROJECTS\New folder\New folder\AWA_HINT_ABOUT_BLANK_FIX\AWA_RELEASE_CANDIDATE\frontend\src\App.tsx:1452: if (checkpointEpoch.current !== undoEpoch) {

@@ -1,0 +1,12 @@
+PASS: reward provider fails closed by default
+PASS: provider request cannot treat failure as completion
+PASS: signed provider callback verification exists
+PASS: reward claim requires verified state
+PASS: achievements screen is reachable from navigation
+PASS: Explore Features target exists
+PASS: leaderboard/achievement pages have explicit loading/empty/error/retry states
+PASS: password reset UI and API flow exist
+PASS: visible mojibake markers absent from main UI source
+PASS: reduced-motion preference is handled
+PASS: backend password-reset routes are registered
+RESULT: 11/11 static checks passed

@@ -1,0 +1,18 @@
+Found 111 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+................................................Rewarded-ad provider session creation failed: Rewarded ads are unavailable: no real ad provider is configured. The local mock never simulates a completed ad.
+.......................................................Unauthorized: /api/auth/refresh/
+.Bad Request: /api/auth/password-reset/confirm/
+.Bad Request: /api/auth/password-reset/confirm/
+..Unauthorized: /api/auth/refresh/
+Bad Request: /api/auth/password-reset/confirm/
+.Unauthorized: /api/auth/refresh/
+.Bad Request: /api/auth/verify-email/
+.Forbidden: /api/auth/login/
+.
+----------------------------------------------------------------------
+Ran 111 tests in 40.364s
+
+OK
+Destroying test database for alias 'default'...

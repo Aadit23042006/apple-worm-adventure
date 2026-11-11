@@ -1,0 +1,11 @@
+# Tue Nov 10 11:26:00 UTC 2026
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.1.0 [39m[90m/home/claude/work/AWA_RELEASE_CANDIDATE/frontend[39m
+
+ [32m✓[39m src/authClient.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m12 passed[39m[22m[90m (12)[39m
+[2m   Start at [22m 11:26:01
+[2m   Duration [22m 931ms[2m (environment 94%, tests 3%, import 2%, transform 1%, worker 1%)[22m
+

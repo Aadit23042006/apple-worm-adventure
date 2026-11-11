@@ -1,0 +1,42 @@
+# Isolated Phase 1 verification stack. Never references the production Compose
+# volume or production .env file. Use project name awa-phase1-verify.
+services:
+  phase1-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: awa_phase1_test
+      POSTGRES_USER: awa_phase1_test
+      POSTGRES_PASSWORD: phase1-only-not-for-production
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U awa_phase1_test -d awa_phase1_test"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - phase1_test_pgdata:/var/lib/postgresql/data
+
+  backend-tests:
+    build:
+      context: ./backend
+    depends_on:
+      phase1-db:
+        condition: service_healthy
+    environment:
+      DJANGO_SECRET_KEY: phase1-test-only-secret-not-for-production
+      DJANGO_DEBUG: "true"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,backend-tests
+      POSTGRES_DB: awa_phase1_test
+      POSTGRES_USER: awa_phase1_test
+      POSTGRES_PASSWORD: phase1-only-not-for-production
+      POSTGRES_HOST: phase1-db
+      POSTGRES_PORT: "5432"
+      EMAIL_BACKEND: django.core.mail.backends.locmem.EmailBackend
+      EMAIL_VERIFICATION_REQUIRED: "false"
+      AD_PROVIDER: mock
+    command: >-
+      sh -ec 'python manage.py check &&
+      python manage.py migrate --noinput &&
+      python manage.py test --verbosity 2'
+
+volumes:
+  phase1_test_pgdata:

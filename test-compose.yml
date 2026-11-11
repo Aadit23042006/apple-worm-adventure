@@ -1,0 +1,16 @@
+services:
+  db:
+    volumes:
+      - awa_fix_test_db:/var/lib/postgresql/data
+  backend:
+    ports: []
+    command: ["sh", "-c", "sleep infinity"]
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      SECURE_HSTS_INCLUDE_SUBDOMAINS: "False"
+      SECURE_HSTS_PRELOAD: "False"
+      SECURE_PROXY_SSL_HEADER_ENABLED: "False"
+
+volumes:
+  awa_fix_test_db:

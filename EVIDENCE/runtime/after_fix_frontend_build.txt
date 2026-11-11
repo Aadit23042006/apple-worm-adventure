@@ -1,0 +1,15 @@
+# Tue Nov 10 11:25:59 UTC 2026 | node v22.23.4
+
+> veloop-apple-worm-adventure@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 1568 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.55 kB │ gzip:  0.34 kB
+dist/assets/index-CyE7umEH.css   12.93 kB │ gzip:  3.82 kB
+dist/assets/index-DizO_lJR.js   266.82 kB │ gzip: 82.85 kB
+
+✓ built in 620ms

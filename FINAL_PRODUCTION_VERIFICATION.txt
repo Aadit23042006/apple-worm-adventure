@@ -1,0 +1,9 @@
+﻿AWA final production verification
+2026-11-11T13:40:18.4940927+05:30
+Scope: only final production tracker items
+
+FAIL | Django production security check | .env.production is missing; create/configure it before this check.
+SKIP | Public domain DNS | No assigned AWA_DOMAIN in .env.production.
+SKIP | Real HTTPS certificate | Requires public DNS and reachable Caddy deployment.
+SKIP | Secure cookies in browser | Requires a reachable HTTPS login flow and browser DevTools.
+SKIP | Production deployment | couldn't find env file: D:\ON GOING WORKING PROJECTS\New folder (3)\AWA_FINAL_PRODUCTION_VERIFICATION\AWA_RELEASE_CANDIDATE\.env.production

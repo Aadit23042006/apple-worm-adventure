@@ -1,0 +1,13 @@
+﻿AWA automated verification results
+2026-11-10T15:26:07.7968256+05:30
+Production application volume is not referenced by this test stack.
+
+PASS | PHASE2_STATIC_AUDIT.py | All 8 rewarded-ad assertions passed
+PASS | phase1_source_audit.py | All assertions in this audit passed
+PASS | verify_phase4_features.py | All assertions in this audit passed
+PASS | verify_phase5_6.py | All assertions in this audit passed
+PASS | verify_phase7_8.py | All assertions in this audit passed
+PASS | Frontend npm ci | Clean dependency install from pinned lockfile
+PASS | Frontend production build | TypeScript and Vite build completed
+PASS | Isolated Compose config | Configuration validated
+PASS | Django/PostgreSQL suite | Django check, migrations and full backend tests passed on isolated PostgreSQL

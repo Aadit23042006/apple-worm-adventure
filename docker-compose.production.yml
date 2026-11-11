@@ -1,0 +1,85 @@
+# Production stack: Caddy is the only public entry point and provisions TLS.
+# Run scripts/VALIDATE-PRODUCTION.ps1 before invoking Docker Compose.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB in .env.production}
+      POSTGRES_USER: ${POSTGRES_USER:?Set POSTGRES_USER in .env.production}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.production}
+    volumes:
+      - veloop_production_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      SECURE_PROXY_SSL_HEADER_ENABLED: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+      python manage.py check --deploy &&
+      python manage.py validate_production &&
+      exec gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120 --graceful-timeout 30"
+    healthcheck:
+      test:
+        ["CMD-SHELL", "python -c \"import socket; s=socket.create_connection(('127.0.0.1',8000),3); s.close()\""]
+      interval: 15s
+      timeout: 8s
+      retries: 12
+      start_period: 45s
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_GAME_NAME: ${VITE_GAME_NAME:-APPLE WORM ADVENTURE}
+        VITE_API_BASE_URL: /api
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      AWA_DOMAIN: ${AWA_DOMAIN:?Set AWA_DOMAIN to your assigned public hostname}
+      ACME_EMAIL: ${ACME_EMAIL:?Set ACME_EMAIL for certificate notifications}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - awa_production_caddy_data:/data
+      - awa_production_caddy_config:/config
+    depends_on:
+      frontend:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "caddy", "validate", "--config", "/etc/caddy/Caddyfile"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  veloop_production_postgres_data:
+  awa_production_caddy_data:
+  awa_production_caddy_config:

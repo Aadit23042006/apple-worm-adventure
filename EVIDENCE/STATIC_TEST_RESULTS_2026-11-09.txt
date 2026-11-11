@@ -1,0 +1,94 @@
+===== PHASE2_STATIC_AUDIT.py =====
+PASS | active backend has no automatic mock completion
+PASS | claim endpoint requires verified provider state
+PASS | callback requires completed status and HMAC
+PASS | callback requires started opportunity
+PASS | frontend calls status before claim
+PASS | frontend checks verified state before claim
+PASS | reward event id is unique in model
+PASS | opportunity lifecycle choices include all required states
+===== scripts/phase1_source_audit.py =====
+PASS: reward provider fails closed by default
+PASS: provider request cannot treat failure as completion
+PASS: signed provider callback verification exists
+PASS: reward claim requires verified state
+PASS: achievements screen is reachable from navigation
+PASS: Explore Features target exists
+PASS: leaderboard/achievement pages have explicit loading/empty/error/retry states
+PASS: password reset UI and API flow exist
+PASS: visible mojibake markers absent from main UI source
+PASS: reduced-motion preference is handled
+PASS: backend password-reset routes are registered
+RESULT: 11/11 static checks passed
+===== scripts/verify_phase4_features.py =====
+PASS: Explore Features link targets #features
+PASS: Exactly one real #features section exists
+PASS: Features section has accessible heading association
+PASS: Features section includes six factual feature cards
+PASS: 60-level claim matches configured project feature
+PASS: Gameplay feature descriptions mention apples, obstacles and portal
+PASS: Hint and undo feature corresponds to implemented controls
+PASS: Score and stars feature corresponds to game state
+PASS: Achievements and leaderboard feature corresponds to existing API routes
+PASS: Wallet and rewards feature corresponds to existing wallet API
+PASS: Reward description explicitly requires backend verification
+PASS: Explore Features button has keyboard-accessible native anchor semantics
+PASS: Responsive tablet and mobile feature layouts exist
+PASS: Anchor scroll offset is defined
+PASS: Reduced-motion preference is respected for scrolling and animation
+RESULT: 15/15 checks passed
+===== scripts/verify_phase5_6.py =====
+PASS | Frontend source files decode as UTF-8 | 4 files inspected
+PASS | No common mojibake markers remain
+PASS | Explicit data states
+PASS | Bounded loading timeout
+PASS | Retry action
+PASS | Leaderboard empty message
+PASS | Achievements empty message
+PASS | Abort in-flight request on timeout
+PASS | Leaderboard response validation
+PASS | Achievements response validation
+PASS | New account achievements test
+PASS | Empty achievements API test
+PASS | New account empty leaderboard test
+PASS | Existing account leaderboard test
+
+RESULT: 14/14 static checks passed
+===== scripts/verify_phase7_8.py =====
+PASS: Route exists: auth/register/
+PASS: Route exists: auth/login/
+PASS: Route exists: auth/refresh/
+PASS: Route exists: auth/logout/
+PASS: Route exists: auth/me/
+PASS: Route exists: auth/verify-email/
+PASS: Route exists: auth/password-reset/request/
+PASS: Route exists: auth/password-reset/confirm/
+PASS: Refresh token stored as digest
+PASS: Refresh token expiry checked
+PASS: Refresh token revocation on logout
+PASS: Email verification expiry checked
+PASS: Password reset token is single-use
+PASS: Password reset expiry checked
+PASS: Password reset invalidates API tokens
+PASS: Password reset revokes refresh sessions
+PASS: Password reset frontend request flow
+PASS: Password reset frontend confirm flow
+PASS: Forgot password entry point
+PASS: Reset-password URL route
+PASS: Reset link token removed from browser URL
+PASS: Skip-to-main-content link
+PASS: Visible keyboard focus style
+PASS: Reduced-motion preference disables animation
+PASS: Reduced-motion preference disables transitions
+PASS: Status messages announced accessibly
+PASS: PDF audit documents password reset is not a mandatory listed endpoint
+
+RESULT: 27/27 static checks passed
+PASS: python -m compileall -q backend
+PASS: package.json and package-lock root dependency versions match
+PASS: YAML parse docker-compose.yml
+PASS: YAML parse docker-compose.phase1-test.yml
+PASS: YAML parse docker-compose.production.yml
+PASS: YAML parse docker-compose.production.local.yml
+PASS: YAML parse test-compose.yml
+PASS: default compose uses auto-created isolated fresh-install volume

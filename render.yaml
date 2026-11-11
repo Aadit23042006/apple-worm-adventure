@@ -1,0 +1,97 @@
+services:
+  - type: web
+    name: awa-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/health/
+    autoDeploy: true
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: GAME_NAME
+        value: APPLE WORM ADVENTURE
+      - key: DJANGO_ALLOWED_HOSTS
+        sync: false
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: POSTGRES_DB
+        fromDatabase:
+          name: awa-postgres
+          property: database
+      - key: POSTGRES_USER
+        fromDatabase:
+          name: awa-postgres
+          property: user
+      - key: POSTGRES_PASSWORD
+        fromDatabase:
+          name: awa-postgres
+          property: password
+      - key: POSTGRES_HOST
+        fromDatabase:
+          name: awa-postgres
+          property: host
+      - key: POSTGRES_PORT
+        fromDatabase:
+          name: awa-postgres
+          property: port
+      - key: FRONTEND_BASE_URL
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: CSRF_TRUSTED_ORIGINS
+        sync: false
+      - key: SECURE_SSL_REDIRECT
+        value: "true"
+      - key: SESSION_COOKIE_SECURE
+        value: "true"
+      - key: CSRF_COOKIE_SECURE
+        value: "true"
+      - key: SECURE_PROXY_SSL_HEADER_ENABLED
+        value: "true"
+      - key: SECURE_HSTS_SECONDS
+        value: "31536000"
+      - key: AD_PROVIDER
+        sync: false
+      - key: AD_PROVIDER_ADAPTER
+        sync: false
+      - key: AD_PROVIDER_WEBHOOK_SECRET
+        sync: false
+      - key: ALLOW_PROVIDER_FREE_DEMO_ADS
+        value: "false"
+      - key: EMAIL_BACKEND
+        value: django.core.mail.backends.smtp.EmailBackend
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: EMAIL_USE_TLS
+        value: "true"
+      - key: EMAIL_USE_SSL
+        value: "false"
+      - key: EMAIL_VERIFICATION_REQUIRED
+        value: "true"
+      - key: DEFAULT_FROM_EMAIL
+        sync: false
+
+  - type: web
+    name: awa-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: VITE_GAME_NAME
+        value: APPLE WORM ADVENTURE
+      - key: VITE_API_BASE_URL
+        sync: false
+
+databases:
+  - name: awa-postgres
+    databaseName: veloop
+    user: veloop_user

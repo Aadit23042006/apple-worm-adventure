@@ -1,0 +1,39 @@
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 718, in _warm_feature_flows
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 509, in _warm_drawing_and_image_flows
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/generated/interface/models.py", line 32861, in bring_to_front
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/rpc/remote.py", line 764, in __call__
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/rpc/client.py", line 175, in call
+artifact_tool.rpc.client.RemoteError: Element ordering requires an owning element collection.
+PASS: Route exists: auth/register/
+PASS: Route exists: auth/login/
+PASS: Route exists: auth/refresh/
+PASS: Route exists: auth/logout/
+PASS: Route exists: auth/me/
+PASS: Route exists: auth/verify-email/
+PASS: Route exists: auth/password-reset/request/
+PASS: Route exists: auth/password-reset/confirm/
+PASS: Refresh token stored as digest
+PASS: Refresh token expiry checked
+PASS: Refresh token revocation on logout
+PASS: Email verification expiry checked
+PASS: Password reset token is single-use
+PASS: Password reset expiry checked
+PASS: Password reset invalidates API tokens
+PASS: Password reset revokes refresh sessions
+PASS: Password reset frontend request flow
+PASS: Password reset frontend confirm flow
+PASS: Forgot password entry point
+PASS: Reset-password URL route
+PASS: Reset link token removed from browser URL
+PASS: Skip-to-main-content link
+PASS: Visible keyboard focus style
+PASS: Reduced-motion preference disables animation
+PASS: Reduced-motion preference disables transitions
+PASS: Status messages announced accessibly
+PASS: PDF audit documents password reset is not a mandatory listed endpoint
+
+RESULT: 27/27 static checks passed

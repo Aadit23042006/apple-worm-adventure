@@ -1,0 +1,67 @@
+name: AWA verification
+on: [push, pull_request]
+jobs:
+  frontend-production-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+
+  django-postgresql-tests:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: awa_phase1_test
+          POSTGRES_USER: awa_phase1_test
+          POSTGRES_PASSWORD: phase1-only-not-for-production
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U awa_phase1_test -d awa_phase1_test"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      DJANGO_SECRET_KEY: ci-only-not-for-production
+      DJANGO_DEBUG: 'true'
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
+      POSTGRES_DB: awa_phase1_test
+      POSTGRES_USER: awa_phase1_test
+      POSTGRES_PASSWORD: phase1-only-not-for-production
+      POSTGRES_HOST: 127.0.0.1
+      POSTGRES_PORT: '5432'
+      EMAIL_BACKEND: django.core.mail.backends.locmem.EmailBackend
+      EMAIL_VERIFICATION_REQUIRED: 'false'
+      AD_PROVIDER: mock
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - run: pip install -r requirements.txt
+      - run: python manage.py check
+      - run: python manage.py migrate --noinput
+      - run: python manage.py test --verbosity 2
+
+  docker-integration-config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose -f docker-compose.phase1-test.yml -p awa-phase1-verify config --quiet
+      - run: docker compose -f docker-compose.phase1-test.yml -p awa-phase1-verify up --build --abort-on-container-exit --exit-code-from backend-tests
+      - if: always()
+        run: docker compose -f docker-compose.phase1-test.yml -p awa-phase1-verify down --volumes --remove-orphans

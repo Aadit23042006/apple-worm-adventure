@@ -1,0 +1,53 @@
+Found 3 test(s).
+Creating test database for alias 'default' ('test_veloop')...
+Operations to perform:
+  Synchronize unmigrated apps: corsheaders, messages, rest_framework, staticfiles
+  Apply all migrations: admin, auth, authtoken, contenttypes, core, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying authtoken.0001_initial... OK
+  Applying authtoken.0002_auto_20160226_1747... OK
+  Applying authtoken.0003_tokenproxy... OK
+  Applying authtoken.0004_alter_tokenproxy_options... OK
+  Applying core.0001_initial... OK
+  Applying core.0002_game_economy... OK
+  Applying core.0003_production_security... OK
+  Applying core.0004_alter_level_options_alter_playerprogress_options_and_more... OK
+  Applying core.0005_gamesession_checkpoint_history... OK
+  Applying core.0006_reward_claim_cooldown... OK
+  Applying core.0007_level_completion_reward_ledger... OK
+  Applying core.0008_seed_production_achievements... OK
+  Applying core.0009_fix_production_achievements... OK
+  Applying core.0010_level_objectives... OK
+  Applying core.0011_no_revive_level_policy... OK
+  Applying core.0012_ad_opportunity_lifecycle... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+test_116_moves_passes_objectives_and_completes_level (core.tests_phase5_6.Level23MoveLimitBoundaryRegressionTests.test_116_moves_passes_objectives_and_completes_level) ... ok
+test_117_moves_is_rejected_and_session_remains_active (core.tests_phase5_6.Level23MoveLimitBoundaryRegressionTests.test_117_moves_is_rejected_and_session_remains_active) ... ok
+test_level_23_move_limit_is_exactly_116 (core.tests_phase5_6.Level23MoveLimitBoundaryRegressionTests.test_level_23_move_limit_is_exactly_116) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.726s
+
+OK
+Destroying test database for alias 'default' ('test_veloop')...

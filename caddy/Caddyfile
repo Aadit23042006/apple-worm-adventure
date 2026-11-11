@@ -1,0 +1,18 @@
+{
+    email {$ACME_EMAIL}
+    # Caddy obtains and renews publicly trusted certificates automatically.
+    # HSTS is emitted by Django only after this proxy marks the request HTTPS.
+}
+
+{$AWA_DOMAIN} {
+    encode zstd gzip
+
+    header {
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+
+    reverse_proxy frontend:5173
+}

@@ -1,0 +1,13 @@
+http://localhost {
+    redir https://localhost{uri} permanent
+}
+
+https://localhost {
+    tls /etc/caddy/certs/localhost.pem /etc/caddy/certs/localhost-key.pem
+
+    header {
+        Strict-Transport-Security "max-age=31536000"
+    }
+
+    reverse_proxy awa-app-frontend:5173
+}

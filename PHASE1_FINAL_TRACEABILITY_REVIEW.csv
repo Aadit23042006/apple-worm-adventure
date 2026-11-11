@@ -1,0 +1,1908 @@
+﻿PDF Section,Exact PDF Heading,PDF Page Start,PDF Page End,Exact PDF Requirement Text,Suggested Source Evidence,Implementation Verification Status,Runtime Test Evidence,Notes,Source Files Inspected / Candidate Evidence,Audit Status,Audit Finding,Required Evidence / Next Verification
+1,PROJECT OBJECTIVE,1,2,"Build a production-quality full-stack web puzzle game inspired by the
+gameplay concept of the provided reference.
+The player controls a growing worm/snake, collects apples, navigates obstacles
+and puzzle structures, and ultimately reaches a destination/portal.
+The reference game's central mechanic is simple but strategic:
+Move → Eat Apple → Grow → Recalculate Path → Reach Portal.
+The reference listing describes a puzzle where each apple increases the snake's
+length and the player must strategically plan movement to reach the
+teleportation portal.
+However, this internship task has an additional requirement:
+THE GAME MUST BE DESIGNED AROUND A
+SUSTAINABLE AD-FUNDED REWARD
+ECONOMY.
+This is especially important because VELoop Rewards is a rewards and
+engagement platform whose monetization depends heavily on advertising.
+Therefore, interns are expected to understand both:
+Game Engineering
+and
+Game Economy Engineering.
+The objective is not:
+""Show as many ads as possible.""
+The objective is:
+Create meaningful rewarded-ad opportunities that users voluntarily choose
+because the reward provides genuine gameplay value, while keeping the
+reward liability economically sustainable against advertising revenue.",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+2,MANDATORY — PLAY THE REFERENCE,2,2,"GAME FIRST
+Before coding, install and play the reference game:
+Snake Puzzle: Slither to Eat
+https://play.google.com/store/apps/details?id=puzzle.snakes.puzzle.slithereat.ga
+ming
+Study:
+ Main menu
+ Level selection
+ Snake movement
+ Apple collection
+ Snake growth
+ Obstacles
+ Traps
+ Portal
+ Level completion
+ Level failure
+ Restart
+ Hint system
+ Difficulty progression
+ UI
+ Animations
+ Sound
+ Reward systems
+ Ad placement
+ Overall gameplay flow
+The reference game specifically describes strategic path planning, apple
+collection, snake growth and reaching the portal.",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+3,IMPORTANT — DO NOT COPY THE,3,3,"REFERENCE GAME
+You are studying the gameplay concept, not copying the application.
+Do NOT copy:
+ Logo
+ Name
+ Characters
+ Snake artwork
+ Apple artwork
+ UI
+ Screenshots
+ Level layouts
+ Sounds
+ Music
+ Source code
+ APK assets
+ Proprietary animations
+ Branding
+Create your own:
+ Game identity
+ Snake/worm design
+ Apple design
+ World
+ Obstacles
+ UI
+ Levels
+ Sounds
+ Animations
+ Reward system",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+4,GAME NAME MUST COME FROM .env,3,3,"This is a mandatory engineering requirement.
+Use:
+VITE_GAME_NAME=APPLE WORM ADVENTURE
+The game name must never be hardcoded throughout the application.",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+5,CENTRALIZED GAME CONFIGURATION,3,4,"Create:
+src/
+└── config/
+└── gameConfig.js
+Example:
+export const GAME_NAME =
+import.meta.env.VITE_GAME_NAME || ""APPLE WORM ADVENTURE"";
+Use:
+import { GAME_NAME } from ""../config/gameConfig"";
+Then:
+<h1>{GAME_NAME}</h1>",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+6,GAME NAME MUST BE USED,4,4,"EVERYWHERE
+Use GAME_NAME for:
+ Landing page
+ Navbar
+ Login
+ Registration
+ Dashboard
+ Level selection
+ Game screen
+ Game-over screen
+ Level completion
+ Loading screen
+ Leaderboard
+ Achievements
+ Rewards screen
+ Settings
+ Profile
+ Help
+ Footer
+ Browser title
+ SEO metadata
+ Open Graph metadata
+ PWA metadata
+ Admin panel
+ Email templates where
+applicable
+There must be one source of truth.",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+7,BACKEND GAME NAME,4,4,"Backend .env:
+GAME_NAME=APPLE WORM ADVENTURE
+Backend:
+const GAME_NAME =
+process.env.GAME_NAME || ""APPLE WORM ADVENTURE"";
+Do not hardcode the game name across backend files.",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+8,.env.example,5,5,"Required:
+VITE_GAME_NAME=APPLE WORM ADVENTURE
+VITE_API_URL=http://localhost:5000/api
+GAME_NAME=APPLE WORM ADVENTURE
+MONGODB_URI=
+JWT_SECRET=
+Never commit real secrets.
+.gitignore:
+.env
+.env.local
+.env.production
+node_modules",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+9,GAME NAME EVALUATION TEST,5,5,"The evaluator may change:
+VITE_GAME_NAME=APPLE QUEST
+or:
+VITE_GAME_NAME=WORM ESCAPE
+After rebuild/restart, the new name must automatically appear everywhere.
+No component should require manual modification.",frontend/src/config/gameConfig.ts; backend/config/settings.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+10,CORE GAMEPLAY,5,6,"The player controls a worm/snake inside a puzzle environment.
+The objective is:
+Collect apples
+↓
+Grow longer
+↓
+Navigate obstacles
+↓
+Solve the puzzle
+↓
+Reach portal
+↓
+Complete level",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+11,GRID-BASED PUZZLE,6,6,"Implement a structured game board.
+Example:
++----------------------+
+| 🟩 🟩 🟩 🟩 🟩      |
+| 🟩 🐛 🟩 🍎 🟩      |
+| 🟩 🟩 🟩 🟩 🟩      |
+| 🟩 🚪 🟩 🌀 🟩      |
++----------------------+
+The board may contain:
+ Worm
+ Apples
+ Portal
+ Walls
+ Platforms
+ Traps
+ Bridges
+ Moving obstacles
+ Special tiles",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+12,WORM MOVEMENT,6,6,"Support:
+Desktop
+ Arrow keys
+ WASD
+ Click controls where
+appropriate
+Mobile
+ Swipe
+ Direction buttons
+The movement must be responsive.",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+13,WORM GROWTH,6,7,"Every apple should increase the worm's length.
+Example:
+Length 2
+↓
+Eat Apple
+↓
+Length 3
+↓
+Eat Apple
+↓
+Length 4
+Growth should affect gameplay.
+It must not simply be a visual counter.",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+14,BODY COLLISION,7,7,"The worm should have actual body collision logic.
+Handle:
+ Head collision
+ Body collision
+ Wall collision
+ Trap collision
+ Invalid movement
+If the player moves into its own body:
+LEVEL FAILED
+unless the current level specifically allows such movement.",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+15,PORTAL SYSTEM,7,7,"Each level must contain a destination.
+Example:
+🐛 → 🍎 → 🍎 → 🌀
+The player must reach:
+🌀 PORTAL
+to complete the level.",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+16,PORTAL VALIDATION,8,8,"Do not allow completion simply because the worm touches the portal.
+Validate:
+ Correct position
+ Required apples collected
+ Objective completed
+ Worm state
+ Level state",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/views.py; backend/core/models.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+17,APPLE SYSTEM,8,8,"Apples can have different types.
+Normal Apple
+Adds one body segment.
+Golden Apple
+Adds bonus score.
+Time Apple
+Adds time if a timed mode exists.
+Mystery Apple
+Triggers a random predefined effect.
+Bonus:
+Mega Apple
+Adds multiple segments.",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+18,OBSTACLES,8,8,"Implement multiple obstacle types.
+Minimum:
+Wall
+Blocks movement.
+Spike
+Causes failure.
+Pit
+Causes failure.
+Locked Gate
+Requires an objective.
+Moving Block
+Changes path.",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+19,ADVANCED OBSTACLES,9,9,"Bonus:
+ Rotating spikes
+ Ice tiles
+ Teleporters
+ One-way gates
+ Breakable blocks
+ Switches
+ Pressure plates
+ Bridges
+ Moving platforms
+ Pushable blocks",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+20,LEVEL OBJECTIVES,9,9,"Do not make every level identical.
+Implement multiple objectives.
+Classic
+Eat all apples and reach portal.
+Collection
+Collect a required number of apples.
+Length
+Reach a specific worm length.
+Rescue
+Collect special objects.
+Key & Gate
+Collect key before reaching portal.
+Limited Moves
+Complete within a move limit.
+Perfect Route
+Complete without hitting obstacles.",frontend/src/App.tsx; backend/core/views.py; backend/core/tests.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+21,LEVEL DIFFICULTY,9,10,"Minimum:
+50 PLAYABLE LEVELS
+Recommended:
+1–10
+Tutorial / Beginner
+11–20
+Easy
+21–30
+Medium
+31–40
+Hard
+41–50
+Expert
+Bonus:
+100+
+200+
+levels.",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+22,LEVEL DATA MUST BE DATA-DRIVEN,10,10,"Do not create 50 separate React pages.
+Use structured level data.
+Example:
+{
+id: 1,
+difficulty: ""easy"",
+grid: {
+rows: 8,
+columns: 8
+},
+wormStart: {
+x: 1,
+y: 6
+},
+apples: [
+{ x: 4, y: 3 }
+],
+portal: {
+x: 7,
+y: 1
+},
+obstacles: [],
+moveLimit: 30,
+objective: ""reach_portal""
+}",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+23,LEVEL GENERATION,10,11,"Level layouts may be:
+Hand-designed
+Recommended for the first 50 levels.
+or:
+Procedurally generated
+Bonus.
+Generated levels must be validated to ensure they are actually solvable.",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+24,SOLVABILITY VALIDATION,11,11,"Every published level must have at least one valid solution.
+Create a validation tool/function where practical.
+Example:
+isLevelSolvable(level)
+This is particularly important if levels are generated automatically.",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/views.py; backend/core/models.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+25,LEVEL SELECT,11,11,"Create a professional level-selection system.
+Display:
+LEVEL 01   ★★★
+LEVEL 02   ★★☆
+LEVEL 03   ★☆☆
+LEVEL 04   🔒
+Track:
+ Completion
+ Stars
+ Best score
+ Best moves",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+26,LEVEL UNLOCKING,11,12,"Initially:
+Level 1 = unlocked
+After completion:
+Level 2 = unlocked
+Continue sequentially.",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+27,STAR SYSTEM,12,12,"Each level should have:
+★
+★★
+★★★
+Stars may depend on:
+ Moves
+ Time
+ Apples collected
+ Deaths
+ Booster usage
+ Efficiency",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+28,SCORE SYSTEM,12,12,"Example:
+Apple collected      +10
+Golden apple         +50
+Level completion     +100
+Perfect completion   +250
+Low moves bonus      +bonus
+No revive bonus      +bonus
+Avoid random score generation.",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+29,MOVE COUNTER,12,13,"Display:
+Moves: 17
+Track:
+ Valid moves
+ Invalid attempts
+ Restarts
+ Revives
+ Hints
+ Boosters",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+30,UNDO SYSTEM,13,13,"Implement a real undo system.
+Undo should restore:
+ Worm position
+ Worm body
+ Apples
+ Obstacles
+ Move count
+ Objective state
+Optional economic model:
+First undo = free
+Additional undo = rewarded-ad opportunity
+This should be controlled by server/configuration rather than hardcoded.",backend/core/models.py; backend/core/views.py; backend/core/migrations/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+31,HINT SYSTEM,13,13,"Create a hint system.
+A hint can:
+ Highlight the next direction
+ Show a recommended route
+ Highlight an apple
+ Highlight a dangerous tile
+ Show portal path",frontend/src/App.tsx; backend/core/views.py; backend/core/test_anticheat_step*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+32,REWARDED-AD HINT,13,14,"One important VELoop monetization opportunity:
+💡 GET FREE HINT
+Watch a short rewarded ad
+After successful ad completion:
+Hint unlocked
+The client must NOT simply assume that an ad was watched.
+The backend should verify the reward event/token where the chosen ad provider
+supports server-side verification.",frontend/src/App.tsx; backend/core/views.py; backend/core/test_anticheat_step*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+33,REVIVE SYSTEM — CORE ECONOMIC,14,14,"FEATURE
+When the player fails:
+LEVEL FAILED
+Show:
+REVIVE
+Watch Ad
+Continue from your last safe state
+[WATCH AD & REVIVE]
+[RESTART]",frontend/src/App.tsx; backend/core/views.py; backend/core/test_anticheat_step*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+34,REVIVE MECHANIC,14,14,"A successful rewarded ad can restore the player's last valid game state.
+Example:
+Death
+↓
+Save checkpoint
+↓
+Show Revive
+↓
+Rewarded Ad
+↓
+Verify reward
+↓
+Restore checkpoint
+↓
+Continue",frontend/src/App.tsx; backend/core/views.py; backend/core/test_anticheat_step*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+35,REVIVE LIMIT,14,15,"Do NOT allow unlimited revives.
+Example configuration:
+MAX_REVIVES_PER_LEVEL = 1;
+or:
+1 free revive
++
+1 rewarded revive
+The exact value should be configurable.",frontend/src/App.tsx; backend/core/views.py; backend/core/test_anticheat_step*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+36,REVIVE ECONOMICS,15,15,"Revive is not just a UI feature.
+Track:
+reviveRequested
+reviveCompleted
+reviveRewardGranted
+reviveRejected
+This allows VELoop to measure:
+Ad Opportunity
+→ Ad Completion
+→ Gameplay Continuation
+→ Session Length",frontend/src/App.tsx; backend/core/views.py; backend/core/test_anticheat_step*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+37,DOUBLE SCORE — REWARDED AD,15,16,"After completing a level:
+LEVEL COMPLETE
+Score: 4,500
+[CLAIM 4,500]
+[WATCH AD → 2X SCORE]
+If the user chooses:
+WATCH AD → 2X SCORE
+and the ad is successfully completed:
+Final Score = 9,000
+The multiplier must be applied server-side.",backend/core/ad_providers.py; backend/core/views.py; backend/core/tests_phase2_ads.py; frontend/src/App.tsx,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+38,DOUBLE COINS — REWARDED AD,16,16,"After completion:
+You earned:
+? 100 Coins
+Show:
+[CLAIM 100]
+[WATCH AD → GET 200]
+After verified rewarded-ad completion:
+Reward = 200 Coins",backend/core/ad_providers.py; backend/core/views.py; backend/core/tests_phase2_ads.py; frontend/src/App.tsx,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+39,IMPORTANT — NO FAKE AD REWARD,16,16,"Do NOT implement:
+onClick={() => coins += 200}
+when the user presses the button.
+Correct flow:
+User requests reward
+↓
+Ad starts
+↓
+Ad completes
+↓
+Provider reward callback / verification
+↓
+Backend validates
+↓
+Backend grants reward
+↓
+Transaction recorded
+↓
+Frontend updates wallet",backend/core/ad_providers.py; backend/core/views.py; backend/core/tests_phase2_ads.py; frontend/src/App.tsx,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+40,EXTRA MOVES — REWARDED AD,16,17,"When the player reaches a move limit:
+NO MOVES LEFT
+Offer:
+🎯 GET +5 MOVES
+Watch Rewarded Ad
+After successful verification:
+Moves +5
+Limit this reward to prevent economic abuse.",backend/core/ad_providers.py; backend/core/views.py; backend/core/tests_phase2_ads.py; frontend/src/App.tsx,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+41,EXTRA LIFE — REWARDED AD,17,17,"Optional:
++1 LIFE
+Watch Ad
+Only use where the selected game mode actually has lives.",backend/core/ad_providers.py; backend/core/views.py; backend/core/tests_phase2_ads.py; frontend/src/App.tsx,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+42,BOOSTER — REWARDED AD,17,17,"Example:
+? MAGIC BOOSTER
+Watch Ad to use this booster.
+The reward may unlock:
+ Undo
+ Hint
+ Safe Move
+ Extra Move
+ Remove Obstacle",backend/core/ad_providers.py; backend/core/views.py; backend/core/tests_phase2_ads.py; frontend/src/App.tsx,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+43,ECONOMICALLY STABLE REWARD,17,18,"SYSTEM
+This is a mandatory business requirement.
+The intern must understand:
+Every reward has an economic cost.
+For example:
+Ad Revenue
+↓
+Platform Revenue
+↓
+Reward Budget
+↓
+User Reward
+The reward system must not blindly distribute unlimited coins.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+44,REWARD ECONOMY CONFIGURATION,18,18,"Create a centralized economy configuration.
+Example:
+export const ECONOMY_CONFIG = {
+levelCompletionCoins: 25,
+rewardedAd: {
+doubleCoinsMultiplier: 2,
+doubleScoreMultiplier: 2,
+reviveEnabled: true,
+extraMoves: 5,
+hintEnabled: true,
+maxRewardedAdsPerDay: 10,
+maxRevivesPerLevel: 1,
+maxDoubleScorePerLevel: 1,
+maxDoubleCoinsPerLevel: 1
+}
+};
+Do not scatter these values across components.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+45,ECONOMY CONFIG SHOULD BE,18,19,"SERVER CONTROLLED
+For a production architecture, important economic parameters should be
+configurable from the backend.
+Example:
+GET /api/economy/config
+The server may return:
+{
+""levelCompletionCoins"": 25,
+""doubleScoreEnabled"": true,
+""doubleCoinsEnabled"": true,
+""reviveEnabled"": true,
+""extraMoves"": 5,
+""dailyRewardedAdCap"": 10
+}
+This allows the business to change the economy without rebuilding the frontend.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+46,REWARD LEDGER,19,19,"Create a proper reward transaction system.
+Collection:
+rewardTransactions
+Each transaction should contain:
+userId
+gameId
+gameSessionId
+levelId
+rewardType
+amount
+multiplier
+source
+adProvider
+adEventId
+status
+createdAt
+Example:
+userId: 123
+rewardType: DOUBLE_COINS
+amount: 200
+source: REWARDED_AD
+status: VERIFIED",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+47,IDEMPOTENCY,19,20,"This is mandatory for reward transactions.
+If the same ad reward callback is received twice:
+AD_EVENT_123
+the user must receive the reward only once.
+Use:
+unique adEventId
+or equivalent idempotency logic.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+48,REWARD STATES,20,20,"Every rewarded action should have a state.
+REQUESTED
+AD_STARTED
+AD_COMPLETED
+VERIFYING
+VERIFIED
+GRANTED
+REJECTED
+EXPIRED
+This makes the system auditable.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+49,AD OPPORTUNITY MODEL,20,20,"Track ad opportunities.
+Example:
+adOpportunities
+Fields:
+userId
+sessionId
+levelId
+type
+createdAt
+expiresAt
+status
+Types:
+REVIVE
+DOUBLE_SCORE
+DOUBLE_COINS
+EXTRA_MOVES
+HINT
+BOOSTER",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+50,AD PLACEMENT STRATEGY,21,21,"The project should prioritize rewarded ads, not aggressive interruption.
+Preferred placements:
+1. Revive
+After failure.
+2. Double Score
+After completion.
+3. Double Coins
+After completion.
+4. Extra Moves
+When stuck/limit reached.
+5. Hint
+When requested.
+6. Booster
+When requested.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+51,INTERSTITIAL ADS,21,21,"If implemented, use them sparingly.
+Do NOT show an interstitial:
+ Immediately after every click
+ During active gameplay
+ During a puzzle solution
+ Before every restart
+ Immediately after a rewarded
+ad
+ Multiple times in a short period
+Use a configurable cooldown.
+Example:
+INTERSTITIAL_COOLDOWN_SECONDS = 120;",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+52,NO AD SPAM,21,22,"This is particularly important.
+The reference game's current listing includes ads, and user reviews have criticized
+excessive/interruption-heavy ad frequency.
+Your implementation should therefore prioritize:
+Opt-in value-based rewarded ads over disruptive advertising.
+The goal is to increase:
+ Session length
+ Engagement
+ Rewarded-ad completion
+ Retention
+ Revenue
+without destroying gameplay.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+53,AD FREQUENCY CONTROL,22,22,"Create configurable rules:
+max rewarded ads per session
+max rewarded ads per hour
+max rewarded ads per day
+minimum time between ads
+maximum revives
+maximum double rewards
+Example:
+const AD_LIMITS = {
+maxRewardedPerSession: 5,
+maxRewardedPerHour: 8,
+maxRewardedPerDay: 15,
+minSecondsBetweenRewardedAds: 30
+};
+These are examples only and should be tuned using actual revenue/engagement
+data.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+54,REWARD CAP,22,22,"Never allow:
+Infinite coins
+Infinite score multiplier
+Infinite revives
+Infinite boosters
+Every reward type must have a configurable cap.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+55,SCORE VS COINS,22,23,"Keep these concepts separate.
+Score
+Used for:
+ Leaderboards
+ Level performance
+ Personal best
+Coins
+Used for:
+ Hints
+ Boosters
+ Cosmetics
+ Optional game utilities
+Do not let users manipulate leaderboard score through client-side coin
+transactions.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+56,COIN ECONOMY,23,23,"Example:
+Level Completion       +25
+Golden Apple           +10
+3-Star Bonus           +20
+Daily Challenge        +100
+Rewarded Double Coins  ×2
+Coin spending:
+Hint                  -50
+Booster               -100
+Extra Undo            -40
+Cosmetic              -500
+These values must be configurable.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+57,REWARD BUDGET MODEL,23,24,"Create an economy model based on:
+Expected Ad Revenue
+↓
+Reward Allocation
+↓
+Maximum Reward Liability
+For example, conceptually:
+Ad Revenue per 1,000 impressions
+↓
+Available reward budget
+↓
+Maximum coins distributed
+The intern does NOT need to know the exact commercial ad-network payout.
+Instead, build the architecture so that reward values can be changed centrally
+after actual monetization data is available.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+58,ECONOMY SAFETY RULE,24,24,"The game must never assume:
+1 ad = unlimited reward
+Instead:
+Verified Ad Event
++
+Eligible Reward
++
+Daily Cap
++
+Session Cap
++
+Idempotency
+=
+Reward Granted",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+59,SERVER-SIDE ECONOMY,24,25,"Important reward operations should go through the backend.
+Example:
+POST /api/rewards/ad/request
+Then:
+POST /api/rewards/ad/verify
+Then:
+POST /api/rewards/ad/claim
+The backend determines whether the reward is actually allowed.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+60,REWARD API,25,25,"Recommended:
+POST /api/rewards/ad/opportunity
+POST /api/rewards/ad/verify
+POST /api/rewards/ad/claim
+GET /api/rewards/balance
+GET /api/rewards/history
+GET /api/economy/config",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+61,REVIVE API,25,25,"POST /api/games/:sessionId/revive/request
+POST /api/games/:sessionId/revive/verify
+The server should verify:
+ Session ownership
+ Level
+ Current game state
+ Revive count
+ Ad verification
+ Eligibility",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+62,DOUBLE SCORE API,25,25,"POST /api/games/:sessionId/double-score/request
+POST /api/games/:sessionId/double-score/verify
+The final score must be calculated server-side.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/views.py; backend/core/models.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+63,DOUBLE COINS API,25,26,"POST /api/games/:sessionId/double-coins/request
+POST /api/games/:sessionId/double-coins/verify
+Do not trust:
+{
+""coins"": 5000
+}
+from the browser.
+The backend determines the actual reward.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+64,EXTRA MOVES API,26,26,"POST /api/games/:sessionId/extra-moves/request
+POST /api/games/:sessionId/extra-moves/verify",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+65,AD PROVIDER ABSTRACTION,26,26,"Do not tightly couple the entire game to one ad provider.
+Create:
+services/
+└── ads/
+├── adService.js
+├── rewardedAdService.js
+└── adProviderAdapter.js
+Conceptually:
+showRewardedAd({
+placement: ""REVIVE""
+});
+This allows the platform to change providers later.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+66,AD PLACEMENTS,26,26,"Define named placements:
+REVIVE
+DOUBLE_SCORE
+DOUBLE_COINS
+EXTRA_MOVES
+HINT
+BOOSTER
+DAILY_REWARD
+Do not use arbitrary strings everywhere.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+67,REWARDED-AD FLOW,26,27,"Required architecture:
+Player clicks:
+WATCH AD & REVIVE
+↓
+Create ad opportunity
+↓
+Ad provider starts
+↓
+Player completes ad
+↓
+Reward verification
+↓
+Backend verifies eligibility
+↓
+Reward ledger transaction
+↓
+Grant reward
+↓
+Update game state",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+68,FAILED AD,27,27,"If an ad fails to load:
+Unable to load reward ad.
+Please try again.
+Do not deduct coins.
+Do not consume the revive.
+Do not grant the reward.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+69,USER CLOSES AD EARLY,27,28,"If the provider reports that the rewarded ad was not completed:
+Reward not completed.
+The reward must not be granted.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+70,DUPLICATE CALLBACK,28,28,"If the provider sends the same reward event twice:
+Event ID = ABC123
+the second request must be rejected as already processed.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+71,REWARD HISTORY,28,28,"Users should be able to see:
+Reward History
++----------------------------+
+| Double Coins     +200      |
+| Rewarded Ad      ✓         |
+| Today                      |
++----------------------------+
+| Revive           Used      |
+| Rewarded Ad      ✓         |
++----------------------------+",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+72,PLAYER WALLET,28,28,"Create a simple in-game wallet.
+Display:
+? 2,450
+The wallet should be backed by the database.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+73,WALLET LEDGER,28,29,"Do not simply update:
+user.coins += 100;
+without a transaction record.
+Record:
+CREDIT
+DEBIT
+REVERSAL
+BONUS
+AD_REWARD
+LEVEL_REWARD
+BOOSTER_PURCHASE",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+74,ECONOMIC AUDIT,29,29,"Admin should be able to inspect:
+Total ad opportunities
+Completed ads
+Failed ads
+Rewarded ads
+Coins granted
+Coins spent
+Revives
+Double-score uses
+Double-coin uses
+Average rewards per user",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+75,ADMIN ECONOMY DASHBOARD —,29,29,"BONUS/STRONGLY RECOMMENDED
+Create:
+Admin → Economy
+Display:
+Today's Ad Opportunities
+Today's Completed Rewarded Ads
+Today's Coins Granted
+Today's Coins Spent
+Rewarded Ad Completion Rate
+Average Ads/User
+Average Reward/User
+This is extremely useful for balancing the VELoop economy.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+76,ECONOMY ANALYTICS,29,30,"Track events:
+game_started
+level_started
+level_completed
+level_failed
+revive_requested
+revive_completed
+double_score_requested
+double_score_completed
+double_coins_requested
+double_coins_completed
+extra_moves_requested
+extra_moves_completed
+hint_requested
+hint_completed
+booster_used
+reward_granted
+reward_rejected",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+77,ECONOMY METRICS,30,30,"The system should allow analysis of:
+Rewarded Ad Completion Rate
+completed ads / ad opportunities
+Reward Cost
+total reward units granted
+Engagement
+sessions / user
+Revive Conversion
+revive ads completed / revive opportunities
+Double Score Conversion
+double-score completions / offers",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+78,GAMEPLAY SHOULD NEVER REQUIRE,30,30,"ADS
+A player should still be able to play the core game without watching an
+advertisement.
+Ads provide:
+ Optional convenience
+ Bonus rewards
+ Recovery
+ Extra progression
+They should not make normal gameplay impossible.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+79,REWARDED ADS SHOULD FEEL LIKE A,30,31,"CHOICE
+Good:
+LEVEL FAILED
+Continue your current progress?
+[WATCH AD & REVIVE]
+[RESTART]
+Bad:
+WATCH THIS AD
+without a meaningful choice.",backend/core/models.py; backend/core/views.py; backend/core/api_key_auth.py; backend/core/tests*.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+80,AUDIO — MANDATORY,31,31,"Implement:
+ Button click
+ Worm movement
+ Apple collection
+ Portal
+ Failure
+ Revive
+ Booster
+ Hint
+ Coin reward
+ Double reward
+ Level complete
+ Star award
+ Achievement",frontend/src/App.tsx; frontend/src/styles.css,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+81,BACKGROUND MUSIC,31,31,"Provide:
+🎵 Music ON/OFF
+🔊 Sound ON/OFF
+Persist preferences.",frontend/src/App.tsx; frontend/src/styles.css,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+82,ANIMATIONS,31,32,"Required:
+Worm movement
+Smooth movement between tiles.
+Apple collection
+Pop/scale effect.
+Growth
+Body segment animation.
+Portal
+Glow/pulse.
+Level complete
+Celebration.
+Coins
+Coin collection animation.
+Revive
+Restoration animation.
+Double reward
+Reward multiplication animation.",frontend/src/App.tsx; frontend/src/styles.css,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+83,PARTICLE EFFECTS,32,32,"Use particles for:
+ Apple collection
+ Golden apple
+ Portal
+ Level completion
+ Coins
+ Revive
+ Achievement
+Optimize them for mobile.",frontend/src/App.tsx; frontend/src/styles.css,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+84,AUTHENTICATION,32,32,"Implement:
+POST /api/auth/register
+POST /api/auth/login
+GET /api/auth/me
+POST /api/auth/logout
+Use:
+ JWT
+ bcrypt
+ Protected routes
+ Secure cookies where
+appropriate",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/views.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; frontend/src/App.tsx,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+85,PLAYER DASHBOARD,32,33,"Display:
+Current Level
+Completed Levels
+Total Stars
+Total Score
+Coins
+Apples Collected
+Best Streak
+Achievements
+Rewarded Ads Watched
+Example:
+LEVEL 34
+⭐?82?Stars
+🏆 245,820 Score
+🍎 1,482 Apples
+? 3,420 Coins
+📺 27 Rewarded Ads",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+86,GAME HISTORY,33,33,"Store:
+Level
+Score
+Moves
+Stars
+Apples
+Revives
+Boosters
+Coins Earned
+Completed
+Date",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+87,GAME SESSION,33,33,"When a level starts:
+POST /api/games/start
+Store:
+sessionId
+userId
+levelId
+startTime
+initialState
+status",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+88,CHECKPOINT SYSTEM,33,33,"For revive functionality, the server/session should maintain a valid checkpoint.
+Example:
+checkpointState
+checkpointMove
+checkpointScore
+checkpointTimestamp
+Do not trust arbitrary client-provided checkpoint data.",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+89,SERVER-SIDE SCORE VALIDATION,33,34,"The backend should validate:
+ Level ID  Session ownership
+ Move count
+ Apples collected
+ Completion state
+ Score
+ Booster usage
+ Revive count
+The browser must never be the sole authority.",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/views.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; frontend/src/App.tsx; backend/core/models.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+90,ANTI-CHEAT,34,34,"Detect:
+ Impossible scores
+ Impossible completion times
+ Impossible movement counts
+ Duplicate completion
+ Reused sessions
+ Fake reward requests
+ Duplicate ad events
+ Invalid reward amounts
+ Modified level IDs
+ Replay attacks",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+91,DATABASE COLLECTIONS,34,34,"Recommended:
+users
+levels
+gameSessions
+playerProgress
+rewardTransactions
+walletTransactions
+adOpportunities
+achievements
+userAchievements
+economyConfigs
+dailyChallenges",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+92,USER MODEL,34,35,"{
+name,
+email,
+passwordHash,
+currentLevel,
+totalScore,
+totalStars,
+coins,
+applesCollected,
+completedLevels,
+rewardedAdsWatched,
+createdAt,
+updatedAt
+}",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+93,REWARD TRANSACTION MODEL,35,35,"{
+userId,
+gameId,
+sessionId,
+type,
+source,
+amount,
+multiplier,
+adProvider,
+adEventId,
+status,
+createdAt
+}",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+94,AD OPPORTUNITY MODEL,35,35,"{
+userId,
+sessionId,
+levelId,
+placement,
+status,
+expiresAt,
+adProvider,
+adEventId,
+createdAt
+}",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+95,WALLET TRANSACTION MODEL,35,36,"{
+userId,
+type,
+amount,
+balanceBefore,
+balanceAfter,
+referenceId,
+source,
+createdAt
+}",backend/config/settings.py; backend/core/views.py; backend/core/urls.py; backend/core/tests_phase7_auth.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+96,LEADERBOARD,36,36,"Create:
+Global Leaderboard
+Rank
+Player
+Score
+Stars
+Levels
+Personal Rank
+Your Rank
+Your Score
+Optional:
+ Weekly
+ Monthly
+ Friends",frontend/src/App.tsx; backend/core/models.py; backend/core/views.py; backend/core/tests_phase3_achievements.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+97,ACHIEVEMENTS,36,37,"Implement at least 10.
+Examples:
+First Apple
+Collect first apple.
+Worm Beginner
+Complete 5 levels.
+Portal Finder
+Complete 10 levels.
+Perfect Route
+Complete a level without failure.
+Apple Collector
+Collect 500 apples.
+Master Solver
+Complete 25 levels.
+Worm Legend
+Complete 50 levels.
+Star Collector
+Earn 100 stars.
+Ad Smart
+Use a rewarded recovery feature.
+Economy Explorer
+Use multiple reward features.",frontend/src/App.tsx; backend/core/models.py; backend/core/views.py; backend/core/tests_phase3_achievements.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+98,DAILY CHALLENGE — BONUS,37,37,"Create a daily puzzle.
+Example:
+DAILY APPLE CHALLENGE
+Objective:
+Collect 5 apples
+Moves:
+20
+Reward:
+100 Coins
+Optional:
+WATCH AD → 2X DAILY REWARD
+Again, the reward must be server-validated and capped.",frontend/src/App.tsx; backend/core/models.py; backend/core/views.py; backend/core/tests_phase3_achievements.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+99,STREAK SYSTEM — BONUS,37,38,"Track:
+Daily Streak
+Example:
+🔥 7 DAYS
+Daily rewards:
+Day 1 → 25 coins
+Day 2 → 30 coins
+Day 3 → 40 coins
+...
+Avoid exponential rewards that can destabilize the economy.",frontend/src/App.tsx; backend/core/models.py; backend/core/views.py; backend/core/tests_phase3_achievements.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+100,OFFLINE MODE — BONUS,38,38,"The reference game is positioned as a casual puzzle experience, and similar
+Apple Worm titles emphasize offline play.
+A web implementation may support:
+ PWA
+ Cached levels
+ Local gameplay
+ IndexedDB
+However:
+Rewarded-ad rewards and leaderboard submissions must require server
+connectivity and verification.
+Never grant server-backed rewards solely from offline state.",frontend/src/App.tsx; backend/core/models.py; backend/core/views.py; backend/core/tests_phase3_achievements.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+101,UI PAGES,38,38,"Minimum:
+/
+/login
+/register
+/dashboard
+/levels
+/game/:levelId
+/leaderboard
+/achievements
+/rewards
+/wallet
+/profile
+/settings
+/help
+Admin:
+/admin
+/admin/economy
+/admin/rewards
+/admin/analytics",frontend/src/App.tsx; frontend/src/main.tsx; frontend/src/styles.css; frontend/nginx.conf,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+102,LANDING PAGE,38,39,"Example:
+{GAME_NAME}
+EAT.
+GROW.
+SOLVE.
+Guide your worm.
+Collect every apple.
+Find the perfect path.
+[PLAY NOW]
+Use:
+{GAME_NAME}",frontend/src/App.tsx; frontend/src/main.tsx; frontend/src/styles.css; frontend/nginx.conf,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/views.py; backend/core/models.py; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+103,REWARD CENTER,39,39,"Create a dedicated:
+? Reward Center
+Example:
+Today's Opportunities
+Revive
+Watch Ad
+? Double Coins
+Watch Ad
+🏆 Double Score
+Watch Ad
+💡 Free Hint
+Watch Ad
+🎯 +5 Moves
+Watch Ad
+The Reward Center should clearly show eligibility/cooldowns.",frontend/src/App.tsx; frontend/src/main.tsx; frontend/src/styles.css; frontend/nginx.conf,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+104,REWARD BUTTON STATES,39,39,"Example:
+AVAILABLE
+COOLDOWN
+Try again in 00:42
+LIMIT REACHED
+AD UNAVAILABLE
+COMPLETED
+Do not show an active reward button when the user is not eligible.",frontend/src/App.tsx; frontend/src/main.tsx; frontend/src/styles.css; frontend/nginx.conf,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+105,REWARD CLAIM UI,40,40,"After successful ad verification:
+🎉 REWARD CLAIMED!
++200 Coins
+New Balance:
+? 2,850
+Use an animation.",frontend/src/App.tsx; frontend/src/main.tsx; frontend/src/styles.css; frontend/nginx.conf,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+106,GAME ENGINE ARCHITECTURE,40,41,"Recommended:
+src/
+├── components/
+│   ├── Worm/
+│   ├── Apple/
+│   ├── Portal/
+│   ├── GameBoard/
+│   ├── GameHUD/
+│   ├── RewardModal/
+│   ├── ReviveModal/
+│   └── BoosterBar/
+│
+├── game/
+│   ├── gameEngine.js
+│   ├── movement.js
+│   ├── collision.js
+│   ├── objectiveManager.js
+│   ├── levelManager.js
+│   ├── checkpointManager.js
+│   └── scoreManager.js
+│
+├── economy/
+│   ├── economyConfig.js
+│   ├── rewardTypes.js
+│   └── rewardUtils.js
+│
+├── services/
+│   ├── authService.js
+│   ├── gameService.js
+│   ├── rewardService.js
+│   ├── walletService.js
+│   └── adService.js
+│
+├── config/
+│   └── gameConfig.js
+│
+├── data/
+│   └── levels/
+│
+├── pages/
+│
+├── hooks/
+│
+└── utils/",frontend/src/App.tsx; frontend/src/main.tsx; frontend/src/styles.css; frontend/nginx.conf,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+107,GAME STATE MACHINE,41,41,"Use clear states:
+LOADING
+READY
+PLAYING
+MOVING
+APPLE_COLLECTED
+FAILED
+REVIVE_PENDING
+REVIVED
+COMPLETED
+REWARD_PENDING
+PAUSED
+This prevents conflicting gameplay/reward actions.",frontend/src/App.tsx; frontend/src/main.tsx; frontend/src/styles.css; frontend/nginx.conf,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+108,REWARD STATE MACHINE,41,41,"Use:
+OFFERED
+REQUESTED
+AD_STARTED
+AD_COMPLETED
+VERIFYING
+VERIFIED
+GRANTED
+REJECTED
+EXPIRED
+Do not mix reward state with ordinary UI state.",frontend/src/App.tsx; frontend/src/main.tsx; frontend/src/styles.css; frontend/nginx.conf,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+109,TECHNOLOGY STACK,41,42,"SUGGESTED STACK
+Frontend
+React.js
+Vite
+Tailwind CSS
+JavaScript / TypeScript
+Backend
+Node.js
+Express.js
+Database
+MongoDB
+MongoDB Atlas
+Authentication
+JWT
+bcrypt
+Game Rendering
+Choose an appropriate technology:
+HTML/CSS
+SVG
+Canvas
+Phaser
+PixiJS",backend/requirements.txt; backend/Dockerfile; docker-compose*.yml; backend/core/ad_providers.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/models.py; backend/core/migrations/; backend/config/settings.py; backend/core/views.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+110,MERN IS THE SUGGESTED STACK,42,42,"The preferred/suggested architecture for this assignment is:
+MongoDB
+Express.js
+React.js
+Node.js
+However:
+INTERNS ARE ALLOWED TO USE THEIR
+PREFERRED TECH STACK.
+For example:
+Next.js
+PostgreSQL
+Supabase
+Firebase
+Django
+FastAPI
+Spring Boot
+Laravel
+NestJS
+etc.
+provided that:
+1. The complete functionality is
+implemented.
+2. Authentication works.
+3. Database persistence works.
+4. Reward economy works.
+5. Ad reward verification works.
+6. Server-side validation exists.
+7. The project is properly
+documented.
+8. The intern explains why they
+selected the alternative stack.
+The stack is flexible.
+The engineering quality is not.",backend/requirements.txt; backend/Dockerfile; docker-compose*.yml; backend/core/ad_providers.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+111,AD PROVIDER FLEXIBILITY,42,43,"The intern may use an appropriate web-supported advertising solution or create
+a provider abstraction/mock integration where the actual provider cannot be
+used in the local environment.
+The important requirement is the architecture:
+Game
+↓
+Ad Placement
+↓
+Ad Provider
+↓
+Reward Verification
+↓
+Backend
+↓
+Economy Ledger
+↓
+Reward
+Do not hardcode a fake:
+adFinished = true
+and claim it is an ad integration.",backend/requirements.txt; backend/Dockerfile; docker-compose*.yml; backend/core/ad_providers.py,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+112,GITHUB REQUIREMENTS,43,43,"Repository:
+apple-worm-adventure/
+│
+├── client/
+├── server/
+├── README.md
+├── .gitignore
+└── .env.example
+Do not upload:
+.env
+node_modules
+API keys
+JWT secrets
+MongoDB credentials
+ad-network secrets",README.md; docs/; Dockerfiles; docker-compose*.yml; scripts/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+113,README REQUIREMENTS,43,44,"README must explain:
+1. Project overview 2. Reference game
+3. Gameplay
+4. Game architecture
+5. Level system
+6. Economy system
+7. Rewarded ads
+8. Ad placements
+9. Reward verification
+10. Wallet
+11. Database
+12. API
+13. Authentication
+14. Anti-cheat
+15. Environment variables
+16. Deployment
+17. Screenshots
+18. Demo video
+19. Known limitations",README.md; docs/; Dockerfiles; docker-compose*.yml; scripts/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+114,ECONOMY DOCUMENTATION —,44,44,"MANDATORY
+README must include an:
+Economy Design
+Explain:
+How users earn
+Level rewards
+Daily rewards
+Verified rewarded ads
+Achievements
+Challenges
+How users spend
+Hints
+Boosters
+Extra utilities
+Cosmetics
+How advertising supports rewards
+Rewarded ad
+↓
+Ad monetization
+↓
+Verified event
+↓
+Controlled reward
+↓
+User engagement",README.md; docs/; Dockerfiles; docker-compose*.yml; scripts/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+115,ECONOMIC SAFETY,44,45,"DOCUMENTATION
+The intern must explain:
+ Daily reward cap
+ Session reward cap
+ Revive cap
+ Double-score cap
+ Double-coins cap
+ Ad cooldown
+ Duplicate reward protection
+ Server validation
+ Wallet ledger
+ Reward transaction
+idempotency",README.md; docs/; Dockerfiles; docker-compose*.yml; scripts/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+116,DEPLOYMENT,45,45,"Submit:
+Frontend:
+https://your-project.vercel.app
+Backend:
+https://your-api.onrender.com
+GitHub:
+https://github.com/username/repository
+The application must actually work.",README.md; docs/; Dockerfiles; docker-compose*.yml; scripts/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+117,DEMO VIDEO,45,46,"The demo MUST show:
+Gameplay
+1. Landing page
+2. Login
+3. Dashboard
+4. Level selection
+5. Worm movement
+6. Apple collection
+7. Worm growth
+8. Obstacles
+9. Portal
+10. Level completion
+11. Level failure
+Economy
+12. Wallet
+13. Revive offer
+14. Rewarded-ad flow
+15. Double Score
+16. Double Coins
+17. Extra Moves
+18. Hint reward
+19. Reward history
+Backend
+20. Game session
+21. Progress persistence
+22. Database
+23. Leaderboard
+24. Server validation
+Responsive
+25. Mobile gameplay 26. Desktop gameplay",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+118,MANDATORY FEATURES,46,48,"The following are compulsory:
+Game
+
+Play reference game
+
+Original game identity
+
+.env game name
+
+Centralized GAME_NAME
+
+Game name used everywhere
+
+Grid puzzle
+
+Worm movement
+
+Apple collection
+
+Worm growth
+
+Body collision
+
+Obstacles
+
+Portal
+
+Multiple objectives
+
+50+ levels
+
+Level progression
+
+Level unlocking
+
+Star system
+
+Score
+
+Move tracking
+
+Restart
+
+Hint
+
+Animations
+
+Sound
+
+Background music
+
+Responsive design
+
+Touch controls
+Full Stack
+
+Authentication
+
+Dashboard
+
+Database
+
+Game sessions
+
+Player progress
+
+Game history
+
+Leaderboard
+
+Achievements
+
+Server-side validation
+
+Anti-cheat basics
+VELoop Economy
+
+Wallet
+
+Wallet ledger
+
+Reward transaction ledger
+
+Ad opportunity tracking
+
+Reward verification
+
+Reward idempotency
+
+Revive via rewarded ad
+
+Double Score via rewarded ad
+
+Double Coins via rewarded ad
+
+Extra Moves via rewarded ad
+
+Hint via rewarded ad
+
+Booster via rewarded ad
+
+Reward caps
+
+Ad cooldown
+
+Daily reward limits
+
+Reward history
+
+Economy configuration
+
+Server-side reward calculation
+Deployment
+
+GitHub
+
+Frontend deployment
+
+Backend deployment
+
+.env.example
+
+README
+
+Demo video",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+119,BONUS FEATURES,48,48,"Extra credit:
+
+Daily challenge
+
+Daily streak
+
+100+ levels
+
+Procedural level generation
+
+Level editor
+
+Admin economy dashboard
+
+Admin reward controls
+
+Weekly leaderboard
+
+Monthly leaderboard
+
+Friends leaderboard
+
+PWA
+
+Offline gameplay
+
+Cloud save
+
+Multiple worms
+
+Skins
+
+Cosmetic shop
+
+Seasonal events
+
+Advanced analytics
+
+A/B testing for reward values
+
+Remote economy configuration
+
+Multiple ad providers
+
+Reward fraud detection
+
+Advanced anti-cheat",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+120,ECONOMIC QUALITY BAR,48,49,"This section is especially important.
+The intern must understand:
+VELoop is not simply giving away coins.
+Coins have an economic value within the platform.
+Therefore:
+USER ACTION
+↓
+ENGAGEMENT
+↓
+AD OPPORTUNITY
+↓
+AD REVENUE
+↓
+CONTROLLED REWARD
+↓
+USER RETENTION
+The system should be designed so that rewards are:
+ Useful
+ Attractive
+ Controlled
+ Measurable
+ Auditable
+ Sustainable",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+121,BAD ECONOMY EXAMPLE,49,49,"Do NOT build:
+Every ad = 10,000 coins
+or:
+Unlimited revive
+or:
+Unlimited double coins
+or:
+Client says ad completed → give reward
+or:
+Coins are only stored in localStorage
+These approaches are unacceptable.",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+122,GOOD ECONOMY EXAMPLE,49,50,"A better design:
+Level Complete
+↓
+25 Coins
+↓
+Optional:
+Watch Rewarded Ad
+↓
+Verified
+↓
+50 Coins
+↓
+Daily Cap Checked
+↓
+Ledger Transaction
+↓
+Wallet Updated
+This provides a meaningful reward without creating uncontrolled liabilities.",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+123,REWARD CONFIGURATION MUST BE,50,50,"CHANGEABLE
+For example:
+{
+levelReward: 25,
+rewardedAds: {
+doubleCoins: true,
+doubleScore: true,
+revive: true,
+extraMoves: 5,
+dailyCap: 10,
+sessionCap: 5,
+maxRevivesPerLevel: 1
+}
+}
+If the business later changes:
+25 coins → 15 coins
+the entire game should not require rewriting gameplay components.",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+124,REMOTE ECONOMY — ADVANCED,50,51,"An excellent implementation will allow an admin to change:
+Level reward
+Double coin multiplier
+Extra moves
+Revive availability
+Daily ad cap
+Reward cooldown
+Booster cost
+Hint cost
+without modifying frontend code.",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py,PARTIAL,Source locations identified in supplied reviewed-source ZIP. This requirement is NOT proven compliant from source presence alone; requirement-specific behavior and/or runtime evidence remains to be verified.,Inspect the cited implementation against the exact PDF wording; record function/component and line references; run the applicable functional/security test and attach result or screenshot. Change status only when evidence supports it.
+125,FINAL EVALUATION CRITERIA,51,51,"Gameplay — 20%
+ Movement
+ Apple mechanics
+ Growth
+ Obstacles
+ Portal
+ Level design
+Game Engineering — 15%
+ State management
+ Collision
+ Level validation
+ Architecture
+ Performance
+Full Stack — 15%
+ Authentication
+ APIs
+ Database
+ Progress
+ Game sessions
+VELoop Economy — 25%
+ Rewarded ads
+ Revive
+ Double score
+ Double coins
+ Extra moves
+ Wallet
+ Ledger
+ Reward validation
+ Caps
+ Anti-abuse
+ Economy configuration
+This section carries the highest weight because the project is being developed
+for a rewards/engagement platform.
+UI/UX — 10%
+ Responsive
+ Mobile controls
+ Animations
+ Visual quality
+Audio/Feedback — 5%
+ Sound
+ Music
+ Effects
+Documentation — 5%
+ README
+ Architecture
+ Economy documentation
+ Deployment
+Code Quality — 5%
+ Clean code
+ Security
+ Reusability
+ Maintainability",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/test_anticheat_step3.py; backend/core/test_anticheat_step4.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."
+126,FINAL SUBMISSION FORMAT,52,52,"Intern Name:
+Intern ID:
+Project Name:
+Configured Game Name:
+GitHub:
+[URL]
+Frontend:
+[URL]
+Backend:
+[URL]
+Demo Video:
+[URL]
+Number of Levels:
+XX
+Tech Stack:
+MERN / Other
+Authentication:
+Implemented / Not Implemented
+Database:
+MongoDB / Other
+Rewarded Ads:
+Implemented / Mocked / Provider
+Ad Placements:
+[List]
+Wallet:
+Implemented / Not Implemented
+Reward Ledger:
+Implemented / Not Implemented
+Revive:
+Implemented / Not Implemented
+Double Score:
+Implemented / Not Implemented
+Double Coins:
+Implemented / Not Implemented
+Extra Moves:
+Implemented / Not Implemented
+Hint:
+Implemented / Not Implemented
+Leaderboard:
+Implemented / Not Implemented
+Achievements:
+Implemented / Not Implemented
+Admin Economy:
+Implemented / Not Implemented
+Bonus Features:
+[List]
+Known Limitations:
+[List]",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; backend/core/migrations/; backend/config/settings.py; backend/core/serializers.py; backend/core/urls.py; backend/core/tests_phase7_auth.py; backend/core/tests_phase3_achievements.py; frontend/src/config/gameConfig.ts; backend/core/tests.py; docker-compose.yml; docker-compose.production.yml; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Cannot be independently proven from source code alone; needs the referenced external activity, visual evidence or submission artifact.",Attach dated screenshots/video or signed reviewer evidence demonstrating the exact requested activity/deliverable.
+127,FINAL INSTRUCTION,52,55,"DO NOT START CODING IMMEDIATELY.
+First, play:
+Snake Puzzle: Slither to Eat
+https://play.google.com/store/apps/details?id=puzzle.snakes.puzzle.slithereat.ga
+ming
+Understand the:
+ Snake/worm movement
+ Apple mechanics
+ Growth
+ Obstacles
+ Puzzle structure
+ Portal
+ Level progression
+ Difficulty
+ Hint system
+ UI
+ Animations
+ Sound
+ Reward opportunities
+ Advertisement flow
+Then build your own original implementation.
+MOST IMPORTANT REQUIREMENTS
+1. GAME NAME
+Must come from:
+VITE_GAME_NAME=APPLE WORM ADVENTURE
+and be accessed through:
+GAME_NAME
+2. SUGGESTED TECH STACK
+The suggested stack is:
+MongoDB
+Express.js
+React.js
+Node.js
+But:
+INTERNS MAY USE THEIR PREFERRED TECH STACK.
+The technology choice is flexible.
+The required functionality and engineering quality are not.
+3. VELoop ECONOMY
+This is a rewards and engagement platform.
+Therefore, every game developed for this program should think beyond
+gameplay.
+Build meaningful:
+Gameplay
+↓
+Engagement
+↓
+Rewarded Ad Opportunity
+↓
+Verified Ad
+↓
+Controlled Reward
+↓
+Wallet / Progress
+↓
+Retention
+The game should monetize through user-choice rewarded advertising, not by
+overwhelming players with interruptions.
+4. REWARDED FEATURES
+At minimum, implement:
+Revive
+↓
+Rewarded Ad
+🏆 Double Score
+↓
+Rewarded Ad
+? Double Coins
+↓
+Rewarded Ad
+🎯 Extra Moves
+↓
+Rewarded Ad
+💡 Hint
+↓
+Rewarded Ad
+? Booster
+↓
+Rewarded Ad
+All important rewards must be:
+server validated + capped + idempotent + ledgered.
+5. ECONOMIC STABILITY
+Never design the game around:
+""More ads = more rewards.""
+Design it around:
+""More meaningful engagement = more valuable ad opportunities = sustainable
+rewards.""
+The reward amounts, caps, cooldowns, and multipliers must be configurable so
+VELoop can tune the economy later based on actual ad revenue, retention, and
+user behavior.
+BUILD THIS AS A REAL PRODUCT
+The evaluator should not feel:
+""This is just an internship CRUD project with a small game attached.""
+The evaluator should feel:
+""This is a real VELoop game product with gameplay, engagement,
+monetization, rewards, analytics, and a controlled economy.""
+That is the expected quality bar.",DEMO_CHECKLIST.md; STARTUP_GUIDE.md; FINAL_LOCAL_SETUP.md; docs/,PARTIAL,NOT ATTACHED IN THIS UPLOAD — DO NOT MARK PASS,Clause text transcribed from the supplied original PDF. Status is deliberately not PASS until source inspection and applicable tests prove compliance.,backend/core/ad_providers.py; backend/core/views.py; backend/core/models.py; backend/core/tests_phase2_ads.py; docs/ECONOMY.md; frontend/src/App.tsx; frontend/src/config/gameConfig.ts; backend/core/tests.py; frontend/src/styles.css; frontend/index.html; docker-compose.yml; docker-compose.production.yml; backend/config/settings.py; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md,PARTIAL,"Provider abstraction and fail-closed behavior are present, but supplied source configures an unconfigured/mock provider by default; real provider launch/completion cannot be proven from this package. PDF allowance for local mock/provider abstraction must be checked against the exact clause.","Confirm the intended provider against PDF section 111; for production, configure a real adapter and test signed callbacks, session binding, replay protection, idempotency, caps/cooldowns and ledger grants. Never simulate completion."

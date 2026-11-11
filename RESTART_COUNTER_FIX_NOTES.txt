@@ -1,0 +1,20 @@
+APPLE WORM ADVENTURE - RESTART COUNTER FIX
+
+Changes:
+1. Frontend restart now explicitly requests a new server-authoritative game session.
+2. A restart response is rejected unless Moves=0, Score=0, completed=false, and failed=false.
+   The previous board is not replaced by a stale/non-initial response.
+3. On successful restart, undo history is cleared and the UI displays:
+   "Level restarted · Moves 0 · Score 0".
+4. Added backend regression test:
+   core.tests.PhaseThreeGameIntegrityTests.test_restart_creates_fresh_zeroed_session
+   It verifies a second start for the same level returns a new session with zero counters
+   and marks the previous active session ABANDONED.
+
+Validation status:
+- Source patch and regression test added.
+- Frontend production build and Django regression test could not be executed in this
+  environment because the frontend dependencies were not installable here and Django
+  is not installed in the host Python environment.
+- Rebuild Docker images and run the regression test on the user's Windows/Docker setup
+  before treating this as verified.
