@@ -1,3 +1,4 @@
+import traceback
 import hashlib
 import hmac
 import logging
@@ -427,6 +428,7 @@ def health(request):
     })
 
 
+
 # ============================================================
 # REGISTER
 # ============================================================
@@ -434,55 +436,97 @@ def health(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def register(request):
-    serializer = RegistrationSerializer(
-        data=request.data
-    )
+    serializer = RegistrationSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
 
-    serializer.is_valid(
-        raise_exception=True
-    )
+    stage = "registration initialization"
 
-    with transaction.atomic():
-        user = serializer.save()
+    try:
+        with transaction.atomic():
+            stage = "user and profile creation"
+            user = serializer.save()
 
-        token, _ = Token.objects.get_or_create(
-            user=user
-        )
+            stage = "authentication token creation"
+            token, _ = Token.objects.get_or_create(user=user)
 
-        seed_progress(user)
+            stage = "initial game progress creation"
+            seed_progress(user)
 
-        verification_token = secrets.token_urlsafe(
-            32
-        )
+            stage = "verification token generation"
+            verification_token = secrets.token_urlsafe(32)
 
-        EmailVerification.objects.update_or_create(
-            user=user,
-            defaults={
-                "token_hash": digest(
+            stage = "email verification record creation"
+            EmailVerification.objects.update_or_create(
+                user=user,
+                defaults={
+                    "token_hash": digest(verification_token),
+                    "expires_at": timezone.now() + timedelta(hours=24),
+                    "verified_at": None,
+                },
+            )
+
+            if not settings.EMAIL_VERIFICATION_REQUIRED:
+                stage = "account activation"
+                user.is_active = True
+                user.save(update_fields=["is_active"])
+
+                EmailVerification.objects.filter(
+                    user=user
+                ).update(verified_at=timezone.now())
+
+        email_sent = False
+
+        if settings.EMAIL_VERIFICATION_REQUIRED:
+            stage = "verification email sending"
+
+            try:
+                _send_verification_email(user, verification_token)
+                email_sent = True
+            except Exception:
+                logger.exception(
+                    "AWA verification email failure for user id=%s",
+                    user.id,
+                )
+                return Response(
+                    {
+                        "detail": (
+                            "Account created, but the verification "
+                            "email could not be sent."
+                        ),
+                        "email_sent": False,
+                        "verification_required": True,
+                    },
+                    status=503,
+                )
+
+        stage = "refresh session creation"
+        refresh_token = issue_refresh(user)
+
+        stage = "user response generation"
+
+        return Response(
+            {
+                "token": token.key,
+                "refresh_token": refresh_token,
+                "verification_token": (
                     verification_token
+                    if settings.DEBUG and settings.EMAIL_VERIFICATION_REQUIRED
+                    else None
                 ),
-                "expires_at": (
-                    timezone.now()
-                    + timedelta(hours=24)
-                ),
-                "verified_at": None,
+                "user": payload(user),
+                "verification_required": settings.EMAIL_VERIFICATION_REQUIRED,
+                "email_sent": email_sent,
             },
+            status=201,
         )
 
-        if not settings.EMAIL_VERIFICATION_REQUIRED:
-            user.is_active = True
+    except Exception:
+        logger.exception(
+            "AWA REGISTRATION FAILURE at stage: %s",
+            stage,
+        )
+        raise
 
-            user.save(
-                update_fields=[
-                    "is_active"
-                ]
-            )
-
-            EmailVerification.objects.filter(
-                user=user
-            ).update(
-                verified_at=timezone.now()
-            )
 
     # --------------------------------------------------------
     # SEND EMAIL AFTER DATABASE TRANSACTION
